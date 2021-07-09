@@ -3,4 +3,5 @@
 *.gch
 *.h.gch
 main.c
+debug.c
 *.txt
