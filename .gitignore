@@ -1,0 +1,6 @@
+*.a
+*.so
+*.gch
+*.h.gch
+main.c
+*.txt
