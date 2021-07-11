@@ -6,7 +6,7 @@
 #    By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/16 08:48:58 by prolling          #+#    #+#              #
-#    Updated: 2021/07/08 14:55:15 by prolling         ###   ########.fr        #
+#    Updated: 2021/07/11 11:06:29 by prolling         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC		= gcc
 ARCH	= ar cr
 
 headers = ft_printf.h
-printf_src = ft_printf.c
+printf_src = ft_printf.c ft_utils.c
 libft_src = libft/*.c libft/libft.h
 debug = debug.c
 

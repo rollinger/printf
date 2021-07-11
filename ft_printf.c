@@ -6,87 +6,63 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 08:37:55 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/09 16:00:45 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/11 11:10:59 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-* Checks at the current position what fragment is actual:
-- if char => return 1
-- if %%-sign => return -1 (a '%' char)
-- if format => return >= 2 (length indicates how long the formatter is)
+* processes the character pos and stores beginning & end of the formatter in
+* fpos[1&2]. Returns 1 if a formatter was found, otherwise 0.
 */
-static int	get_fragment_length(const char *str)
+static size_t	process_pos(const char *p, char **fpos, int *total)
 {
-	int length;
-
-	length = 1;
-	if (*str == '%')
+	if (fpos[1] == NULL)
 	{
-		if (str[length] == '%')
-			length = -1;
+		if (*p == FORMAT_FLAG)
+			fpos[1] = (char *)p;
 		else
-		{
-			length = 2;
-			while(ft_strchr(CONVERSIONS, str[length]) == NULL)
-				length++;
-		}
+			*total += print_c(*p);
 	}
-	return (length);
-}
-
-/*
-*
-*/
-static int	process_position(const char *str, va_list args)
-{
-	int 	current;
-	void	**result;
-
-	current = get_fragment_length(str);
-	result = NULL;
-	if (current == 1)
-		ft_putchar((char)*str);
-	else if (current == -1)
+	else if (ft_strchr(CONVERSIONS, *p))
 	{
-		ft_putchar('%');
-		current = 2;
+		fpos[2] = (char *)p;
+		return (1);
 	}
-	else if (current >= 2)
-	{
-		ft_putchar('#'); //ACTUAL
-		*result = va_arg(args, char *);
-	}
-	return (current);
+	return (0);
 }
 
 /*
 * printf takes a string and variadic data, interpolates it and prints it out.
 * <str>	format string containing %<flags><conv> formatter.
 * ... elipsis for variadic arguments.
-*
-// preparse flags and check if type is supported / or otherwise illegal
-// print str loop
-	// halt at % flag and parse conversion command
-	// get (char *) from conversion function (conv, flag, variable)
-		// handle error if c,f or v returned NULL from function.
-	// print str loop of the conversion
-// return int (state convention)
-* TODO: protect against !str or !va_args
+* VARIABLES:
+* va_list	args; 	=> variadic argument list
+* int		total;	=> total printed characters
+* char	*fpos[3];	=> [str_start, format_start, format_end]
+* char	*var_str;
+* ALGORITHM:
 */
 int	ft_printf(const char *str, ...)
 {
-	va_list	args;
-	int		total;
+	va_list		args;
+	int			total;
+	char		*fpos[3];
+	//char		*var_str;
 
+	fpos[0] = (char *)str;
+	reset_fpos(fpos);
 	va_start(args, str);
-	total = 0;
-	while (str[total] != '\0')
+	while (*str != '\0')
 	{
-		total += process_position(&str[total], args);
+		if (process_pos(str, fpos, &total) == 1)
+		{
+			total += print_s("FORMAT");
+			reset_fpos(fpos);
+		}
+		str++;
 	}
 	va_end(args);
-	return (total); //return total bytes written
+	return (total);
 }

@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/11 11:03:26 by prolling         ###   ########.fr       */
+/*   Created: 2021/07/11 10:27:51 by prolling          #+#    #+#             */
+/*   Updated: 2021/07/11 11:03:08 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include "libft/libft.h"
+void	reset_fpos(char **fpos)
+{
+	fpos[1] = NULL;
+	fpos[2] = NULL;
+	return ;
+}
 
-# define FORMAT_FLAG '%'
-# define CONVERSIONS "cspdiuxX%"
+size_t	print_c(char c)
+{
+	ft_putchar(c);
+	return(1);
+}
 
-int		ft_printf(const char *str, ...);
-/* Conversion Functions */
-/* Helper Function */
-void	reset_fpos(char **fpos);
-size_t	print_c(char c);
-size_t	print_s(char *s);
-
-#endif
+size_t	print_s(char *s)
+{
+	ft_putstr(s);
+	return(ft_strlen(s));
+}
