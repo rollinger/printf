@@ -6,11 +6,20 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 08:37:55 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/11 11:10:59 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/11 11:20:48 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+* Interpolates (Convert and print) the variable given va_arg and fpos
+* Returns the length of the printed string
+*/
+static size_t	interpolate_var(char **fpos, va_list args)
+{
+	return (print_s("FORMAT"));
+}
 
 /*
 * processes the character pos and stores beginning & end of the formatter in
@@ -58,7 +67,8 @@ int	ft_printf(const char *str, ...)
 	{
 		if (process_pos(str, fpos, &total) == 1)
 		{
-			total += print_s("FORMAT");
+			//total += print_s("FORMAT");
+			total += interpolate_var(fpos, args)
 			reset_fpos(fpos);
 		}
 		str++;
