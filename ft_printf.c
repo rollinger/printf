@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 08:37:55 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/11 15:12:16 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/11 16:53:14 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,9 @@ static size_t	interpolate_var(char **fpos, va_list args)
 	size_t	len;
 
 	format = build_format_struct(fpos, args);
-	//convert_variable(t_format *format);
-
-	/*char	*var_str;
-	var_str = convert_variable(t_flags *flags);
-
-	len = print_s(var_str);
-	free(var_str);
-	free(flags);
-	return (len);
-	*/
-	print_c(format->conv);
-	len = print_s(format->var_s);
-	free_flags(format);
+	ft_convert_variable(format);
+	len = print_s(format->str);
+	free_format(format);
 	return (len);
 	//return (print_s(va_arg(args, char *)));
 }

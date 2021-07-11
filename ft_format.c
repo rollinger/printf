@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flags.c                                         :+:      :+:    :+:   */
+/*   ft_format.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/11 15:11:25 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/11 17:08:18 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_format	*build_format_struct(char **fpos, va_list args)
 	if (format->conv == 's')
 		format->var_s = va_arg(args, char *);
 	else if (format->conv == 'c')
+		format->var_i = va_arg(args, int);
+	else if (format->conv == 'i')
 		format->var_i = va_arg(args, int);
 	/* more conversions cs - ipduxX */
 	/* more flags */

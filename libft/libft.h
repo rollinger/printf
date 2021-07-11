@@ -6,13 +6,14 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 10:19:18 by prolling          #+#    #+#             */
-/*   Updated: 2021/05/28 06:54:19 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/11 17:13:46 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stdlib.h>
+# include <stdarg.h>
 # include <unistd.h>
 
 # define LOWUPDIFF 32
@@ -48,6 +49,8 @@ void	*ft_calloc(size_t nmemb, size_t size);
 /* Basic string-op based functions */
 size_t	ft_strlen(const char *s);
 size_t	ft_strclen(const char *s, char c);
+size_t	ft_strslen(const char *s, const char *nc);
+char	*ft_ctos(int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -69,9 +72,12 @@ void	ft_putchar(char c);
 void	ft_putstr(char *s);
 void	ft_putendl(char *s);
 void	ft_putnbr(int n);
+void	ft_puts(int n, ...);
 /* Basic number based functions */
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
+int		ft_add(int n, ...);
+int		ft_sub(int n, ...);
 /* Basic linked list based functions */
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstnew(void *content);

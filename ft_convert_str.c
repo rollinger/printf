@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_convert_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 10:33:01 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/06 12:45:50 by prolling         ###   ########.fr       */
+/*   Created: 2021/07/11 16:44:50 by prolling          #+#    #+#             */
+/*   Updated: 2021/07/11 17:09:56 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 /*
-* The memset() function fills the first n bytes of the memory area pointed to
-* by s with the constant int c interpreted as a unsigned char.
+* Converts the format->var_s into the correct representation at format->str
+* Applies flag conversions: ...
+* Returns nothing
 */
-void	*ft_memset(void *s, int c, size_t n)
+void	ft_convert_str(t_format *format)
 {
-	unsigned char	*m;
-
-	m = s;
-	while (n)
-	{
-		*m = (unsigned char) c;
-		m++;
-		n--;
-	}
-	return (s);
+	//format->str = "STR";
+	format->str = ft_strdup(format->var_s);
+	return ;
 }

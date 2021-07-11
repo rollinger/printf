@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_ctos_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 10:33:01 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/06 12:45:50 by prolling         ###   ########.fr       */
+/*   Created: 2021/07/11 17:10:51 by prolling          #+#    #+#             */
+/*   Updated: 2021/07/11 17:19:06 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-* The memset() function fills the first n bytes of the memory area pointed to
-* by s with the constant int c interpreted as a unsigned char.
-*/
-void	*ft_memset(void *s, int c, size_t n)
+char	*ft_ctos(int c)
 {
-	unsigned char	*m;
+	char *s;
 
-	m = s;
-	while (n)
-	{
-		*m = (unsigned char) c;
-		m++;
-		n--;
-	}
+	s = (char *)ft_calloc(sizeof(char), 2);
+	if (s)
+		s[0] = c;
 	return (s);
 }

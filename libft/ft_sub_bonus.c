@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_sub_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 10:33:01 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/06 12:45:50 by prolling         ###   ########.fr       */
+/*   Created: 2021/07/09 12:13:59 by prolling          #+#    #+#             */
+/*   Updated: 2021/07/09 13:07:26 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-* The memset() function fills the first n bytes of the memory area pointed to
-* by s with the constant int c interpreted as a unsigned char.
+* Subtract a variable number of integers up. returns an integer.
 */
-void	*ft_memset(void *s, int c, size_t n)
+int	ft_sub(int n, ...)
 {
-	unsigned char	*m;
+	va_list	args;
+	int		result;
 
-	m = s;
-	while (n)
-	{
-		*m = (unsigned char) c;
-		m++;
-		n--;
-	}
-	return (s);
+	result = 0;
+	va_start(args, n);
+	while (n--)
+		result -= va_arg(args, int);
+	va_end(args);
+	return (result);
 }
