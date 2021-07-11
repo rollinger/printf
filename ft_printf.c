@@ -6,14 +6,14 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 08:37:55 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/11 16:53:14 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/11 17:30:21 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-* Interpolates (Convert and print) the variable given va_arg and fpos
+* Interpolates (convert and print) the variable given va_arg and fpos
 * Returns the length of the printed string
 */
 static size_t	interpolate_var(char **fpos, va_list args)
@@ -26,7 +26,6 @@ static size_t	interpolate_var(char **fpos, va_list args)
 	len = print_s(format->str);
 	free_format(format);
 	return (len);
-	//return (print_s(va_arg(args, char *)));
 }
 
 /*

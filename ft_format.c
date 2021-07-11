@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/11 17:08:18 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/11 17:31:41 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_format	*build_format_struct(char **fpos, va_list args)
 */
 void	free_format(t_format *format)
 {
-	//free(format->str);
+	free(format->str);
 	//free(format->var_s);
 	free(format);
 	return ;
