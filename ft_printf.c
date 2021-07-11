@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 08:37:55 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/11 11:20:48 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/11 12:15:33 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,24 @@
 */
 static size_t	interpolate_var(char **fpos, va_list args)
 {
-	return (print_s("FORMAT"));
+	/*char	*var_str;
+	t_flags	*flags;
+	size_t	len;
+
+	flags = build_flags_struct(char **fpos, va_list args)
+	var_str = convert_variable(t_flags *flags);
+
+	len = print_s(var_str);
+	free(var_str);
+	free(flags);
+	return (len);
+	*/
+	///*
+	char *conv = fpos[0];
+	fpos[0] = conv;
+
+	return (print_s(va_arg(args, char *)));
+	//*/
 }
 
 /*
@@ -39,6 +56,11 @@ static size_t	process_pos(const char *p, char **fpos, int *total)
 		fpos[2] = (char *)p;
 		return (1);
 	}
+	else if (*p == '%')
+	{
+		*total += print_c(*p);
+		reset_fpos(fpos);
+	}
 	return (0);
 }
 
@@ -58,7 +80,6 @@ int	ft_printf(const char *str, ...)
 	va_list		args;
 	int			total;
 	char		*fpos[3];
-	//char		*var_str;
 
 	fpos[0] = (char *)str;
 	reset_fpos(fpos);
@@ -67,8 +88,7 @@ int	ft_printf(const char *str, ...)
 	{
 		if (process_pos(str, fpos, &total) == 1)
 		{
-			//total += print_s("FORMAT");
-			total += interpolate_var(fpos, args)
+			total += interpolate_var(fpos, args);
 			reset_fpos(fpos);
 		}
 		str++;
