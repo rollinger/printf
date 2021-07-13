@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/13 11:46:41 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:42:02 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_format	*build_format_struct(char **fpos, va_list args)
 		format->var_ui = va_arg(args, unsigned int);
 	else if (ft_strchr("xXp", format->conv))
 		format->var_ulli = va_arg(args, unsigned long long int);
-	/* more conversions csixXp :: du */
+	/* more conversions csixXpdu :: */
 	/* more flags */
 	return (format);
 }

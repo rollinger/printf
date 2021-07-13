@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 10:19:18 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/13 12:39:39 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/13 15:50:11 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strupcase(char *str);
 char	*ft_strlowcase(char *str);
+char	*ft_lpad(char *str, size_t size, int c);
+char	*ft_rpad(char *str, size_t size, int c);
 /* Basic output functions */
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
