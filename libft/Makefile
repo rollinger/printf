@@ -6,7 +6,7 @@
 #    By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/15 17:05:05 by prolling          #+#    #+#              #
-#    Updated: 2021/07/11 17:18:50 by prolling         ###   ########.fr        #
+#    Updated: 2021/07/13 09:58:56 by prolling         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ sources_bonus = ft_lstnew.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 sources_own = ft_isupper_bonus.c ft_islower_bonus.c ft_isspace_bonus.c \
 	ft_putchar_bonus.c ft_putstr_bonus.c ft_putendl_bonus.c ft_putnbr_bonus.c \
 	ft_strclen_bonus.c ft_add_bonus.c ft_sub_bonus.c ft_puts_bonus.c \
-	ft_ctos_bonus.c
+	ft_ctos_bonus.c ft_itoa_base_bonus.c ft_itox_bonus.c ft_itoo_bonus.c \
+	ft_itob_bonus.c ft_swap_bonus.c ft_struplowcase_bonus.c
 headers = libft.h
 
 OBJS		=	$(sources) #$(sources:.c=.o)

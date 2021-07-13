@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 08:37:55 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/11 17:30:21 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/12 11:26:35 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,24 @@ static size_t	process_pos(const char *p, char **fpos, int *total)
 * char	*var_str;
 * ALGORITHM:
 */
-int	ft_printf(const char *str, ...)
+int	ft_printf(const char *fstr, ...)
 {
 	va_list		args;
 	int			total;
 	char		*fpos[3];
 
-	fpos[0] = (char *)str;
+	fpos[0] = (char *)fstr;
+	total = 0;
 	reset_fpos(fpos);
-	va_start(args, str);
-	while (*str != '\0')
+	va_start(args, fstr);
+	while (*fstr != '\0')
 	{
-		if (process_pos(str, fpos, &total) == 1)
+		if (process_pos(fstr, fpos, &total) == 1)
 		{
 			total += interpolate_var(fpos, args);
 			reset_fpos(fpos);
 		}
-		str++;
+		fstr++;
 	}
 	va_end(args);
 	return (total);

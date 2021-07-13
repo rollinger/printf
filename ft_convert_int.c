@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:44:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/11 17:20:52 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/13 12:41:38 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,12 @@ void	ft_convert_int(t_format *format)
 {
 	//format->str = "INT";
 	format->str = ft_itoa(format->var_i);
+	return ;
+}
+
+void	ft_convert_uint(t_format *format)
+{
+	//format->str = "UINT";
+	format->str = ft_uitoa(format->var_ui);
 	return ;
 }

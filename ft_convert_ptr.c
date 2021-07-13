@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctos_bonus.c                                    :+:      :+:    :+:   */
+/*   ft_convert_ptr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/11 17:10:51 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/12 12:11:51 by prolling         ###   ########.fr       */
+/*   Created: 2021/07/12 11:16:16 by prolling          #+#    #+#             */
+/*   Updated: 2021/07/13 10:40:08 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_ctos(int c)
+/*
+* Converts the format->var_i into the correct representation at format->str
+* Applies flag conversions: ...
+* Returns nothing
+*/
+void	ft_convert_ptr(t_format *format)
 {
-	char	*s;
-
-	s = (char *)ft_calloc(sizeof(char), 2);
-	if (s)
-		s[0] = c;
-	return (s);
+	format->str = ft_strjoin("0x", ft_uitox(format->var_ulli));
+	return ;
 }

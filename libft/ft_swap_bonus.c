@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctos_bonus.c                                    :+:      :+:    :+:   */
+/*   ft_swap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/11 17:10:51 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/12 12:11:51 by prolling         ###   ########.fr       */
+/*   Created: 2021/07/13 07:49:06 by prolling          #+#    #+#             */
+/*   Updated: 2021/07/13 08:43:06 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_ctos(int c)
+/*
+* Swaps the two integer values with each other in place. Returns nothing.
+*/
+void	ft_swapi(int *a, int *b)
 {
-	char	*s;
+	int	buf;
 
-	s = (char *)ft_calloc(sizeof(char), 2);
-	if (s)
-		s[0] = c;
-	return (s);
+	buf = *b;
+	*b = *a;
+	*a = buf;
+	return ;
+}
+
+/*
+* Swaps the two character values with each other in place. Returns nothing.
+*/
+void	ft_swapc(char *a, char *b)
+{
+	char	buf;
+
+	buf = *b;
+	*b = *a;
+	*a = buf;
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/11 17:31:41 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/13 11:46:41 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,52 @@ t_format	*build_format_struct(char **fpos, va_list args)
 {
 	t_format *format;
 
-	format = (t_format *)malloc(sizeof(t_format));
+	format = init_format();
 	format->conv = *fpos[2];
 	if (format->conv == 's')
 		format->var_s = va_arg(args, char *);
 	else if (format->conv == 'c')
 		format->var_i = va_arg(args, int);
-	else if (format->conv == 'i')
+	else if (ft_strchr("di", format->conv))
 		format->var_i = va_arg(args, int);
-	/* more conversions cs - ipduxX */
+	else if (format->conv == 'u')
+		format->var_ui = va_arg(args, unsigned int);
+	else if (ft_strchr("xXp", format->conv))
+		format->var_ulli = va_arg(args, unsigned long long int);
+	/* more conversions csixXp :: du */
 	/* more flags */
 	return (format);
 }
 
 /*
+* Inits an empty t_format type with defaults and returns it.
+*/
+t_format	*init_format()
+{
+	t_format *format;
+
+	format = (t_format *)malloc(sizeof(t_format));
+	format->str = NULL;
+	format->conv = 0;
+	format->var_s = NULL;
+	format->var_i = 0;
+	format->var_ulli = 0;
+	format->field_width = 0;
+	format->precision = 0;
+	format->length_mod = 0;
+	return (format);
+}
+
+/*
 * Frees the struct and all elements
+* ??? Does not need to free attached elements ???
 */
 void	free_format(t_format *format)
 {
-	free(format->str);
-	//free(format->var_s);
+	/*if (format->str != NULL)
+		free(format->str);
+	if (format->var_s != NULL)
+		free(format->var_s);*/
 	free(format);
 	return ;
 }

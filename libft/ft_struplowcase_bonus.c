@@ -1,23 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctos_bonus.c                                    :+:      :+:    :+:   */
+/*   ft_struplowcase_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/11 17:10:51 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/12 12:11:51 by prolling         ###   ########.fr       */
+/*   Created: 2021/07/13 08:54:21 by prolling          #+#    #+#             */
+/*   Updated: 2021/07/13 09:13:07 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_ctos(int c)
+/*
+*
+*/
+char	*ft_strupcase(char *str)
 {
-	char	*s;
+	size_t	i;
 
-	s = (char *)ft_calloc(sizeof(char), 2);
-	if (s)
-		s[0] = c;
-	return (s);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (ft_islower(str[i]))
+			str[i] = ft_toupper(str[i]);
+		i++;
+	}
+	return (str);
+}
+
+/*
+*
+*/
+char	*ft_strlowcase(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (ft_isupper(str[i]))
+			str[i] = ft_tolower(str[i]);
+		i++;
+	}
+	return (str);
 }

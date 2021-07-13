@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctos_bonus.c                                    :+:      :+:    :+:   */
+/*   ft_ndigits_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/11 17:10:51 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/12 12:11:51 by prolling         ###   ########.fr       */
+/*   Created: 2021/07/13 12:37:24 by prolling          #+#    #+#             */
+/*   Updated: 2021/07/13 12:39:12 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_ctos(int c)
+/*
+* Returns the number of digits of <n>. The parameter is of long long int.
+*/
+size_t	ft_ndigits(long long int n)
 {
-	char	*s;
+	size_t	x;
 
-	s = (char *)ft_calloc(sizeof(char), 2);
-	if (s)
-		s[0] = c;
-	return (s);
+	x = 0;
+	if (n < 0)
+	{
+		n *= -1;
+		++x;
+	}
+	while (n >= 10)
+	{
+		n /= 10;
+		++x;
+	}
+	return (++x);
 }
