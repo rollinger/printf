@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/13 11:50:46 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/14 14:37:08 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,21 @@ typedef struct	s_format
 	unsigned int			var_ui;
 	unsigned long long int	var_ulli;
 	size_t					field_width;
-	size_t					precision;
-	size_t					length_mod;
-	//...flags ...
+	size_t					flg_space;
+	size_t					flg_hash;
+	size_t					flg_plus;
 }				t_format;
 
+//int			ft_sprintf(char *str, const char *format, ...);
 int			ft_printf(const char *str, ...);
 /* Conversion Functions */
-void	ft_convert_variable(t_format *format);
-void	ft_convert_str(t_format *format);
-void	ft_convert_char(t_format *format);
-void	ft_convert_int(t_format *format);
-void	ft_convert_uint(t_format *format);
-void	ft_convert_hex(t_format *format);
-void	ft_convert_ptr(t_format *format);
+void		ft_convert_variable(t_format *format);
+void		ft_convert_str(t_format *format);
+void		ft_convert_char(t_format *format);
+void		ft_convert_int(t_format *format);
+void		ft_convert_uint(t_format *format);
+void		ft_convert_hex(t_format *format);
+void		ft_convert_ptr(t_format *format);
 /* Format Functions */
 t_format	*build_format_struct(char **fpos, va_list args);
 t_format	*init_format();

@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 10:27:51 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/11 16:57:54 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/14 19:57:32 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,20 @@
 /*
 * Resets fpos to NULL at index 1 & 2
 */
-void	reset_fpos(char **fpos)
+void	reset_fpos(char **fpos, char *zero)
 {
+	fpos[0] = zero;
 	fpos[1] = NULL;
 	fpos[2] = NULL;
+	return ;
+}
+
+/*
+* Sets fpos [0] to 1
+*/
+void	shift_fpos(char **fpos)
+{
+	fpos[0] = fpos[1];
 	return ;
 }
 
