@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:54:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/14 21:17:42 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/15 11:21:46 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 /*
 * Interpolates (convert and print) the variable given va_arg and fpos
-* Returns the length of the printed string
+* Returns the *t_format
 */
-static size_t	interpolate_var(char **fpos, va_list args)
+static char	*interpolate_var(char **fpos, va_list args)
 {
 	t_format	*format;
-	size_t	len;
+	char		*str;
 
 	format = build_format_struct(fpos, args);
 	ft_convert_variable(format);
-	len = print_s(format->str);
+	str = format->str;
 	free_format(format);
-	return (len);
+	return (str);
 }
 
 /*
@@ -64,13 +64,13 @@ int ft_vprintf(char *str, const char *fstr, va_list args)
 		if (pp == 1)
 		{
 			//join str and normal
-			str = ft_strjoin(str, ft_substr(fstr, fpos[0], fpos[0] - fpos[1]))
+			str = ft_strjoin(str, ft_substr(fstr, fpos[0] - fstr, fpos[1] - fpos[0]));
 			fpos[0] = fpos[1]; //shift fpos
 		}
 		else if (pp == 2)
 		{
 			//join str and interpolation
-			//total += interpolate_var(fpos, args);
+			str = ft_strjoin(str, interpolate_var(fpos, args));
 			reset_fpos(fpos, fpos[2]); //resets fpos[0] with fpos[2]
 		}
 		fstr++;
