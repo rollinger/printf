@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/15 10:47:23 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/15 11:23:55 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_format
 	size_t					flg_plus;
 }				t_format;
 
-//int			ft_sprintf(char *str, const char *format, ...);
+int			ft_sprintf(char *str, const char *format, ...);
 int			ft_printf(const char *str, ...);
 /* Conversion Functions */
 void		ft_convert_variable(t_format *format);

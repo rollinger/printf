@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:54:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/15 11:21:46 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/15 11:25:15 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,5 @@ int	ft_printf(const char *fstr, ...)
 	va_end(args);
 	ft_putstr(str);
 	free(str);
-	return (total);
+	return (0);
 }
