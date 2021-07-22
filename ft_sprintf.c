@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:54:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/22 15:51:54 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/22 15:56:49 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int ft_vprintf(char **str, const char *fstr, va_list args)
 	char	*temp;
 
 	*str = ft_calloc(sizeof(char), 1);
-	if (!*str || !*fstr || !args) //args to be removed (hack)
+	if (!*str || !*fstr) //args to be removed (hack)
 		return (-1);
 
 	reset_fpos(fpos, 0);
