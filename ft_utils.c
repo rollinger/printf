@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 10:27:51 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/22 15:44:50 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/22 16:02:28 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ char	*ft_strset(const char *s1, const char *s2)
 			return ((char *)s1);
 		++s1;
 	}
-	if (*s1 == '\0')
-		return ((char *)s1);
 	return (NULL);
 }
 

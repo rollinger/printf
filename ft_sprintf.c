@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:54:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/22 15:56:49 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/22 16:23:54 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*interpolate_var(int *fpos, const char *fstr, va_list args)
 
 	format = build_format_struct(fpos, fstr, args);
 	ft_convert_variable(format);
-	str = format->str;
+	str = ft_strdup(format->str);
 	free_format(format);
 	return (str);
 }
@@ -77,7 +77,7 @@ int ft_vprintf(char **str, const char *fstr, va_list args)
 	char	*temp;
 
 	*str = ft_calloc(sizeof(char), 1);
-	if (!*str || !*fstr) //args to be removed (hack)
+	if (!*str || !*fstr)
 		return (-1);
 
 	reset_fpos(fpos, 0);

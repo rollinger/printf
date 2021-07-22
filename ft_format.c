@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/22 15:51:13 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/22 15:58:48 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_format	*build_format_struct(int *fpos, const char *fstr, va_list args)
 		format->var_s = va_arg(args, char *);
 	else if (format->conv == 'c')
 		format->var_i = va_arg(args, int);
+	else if (format->conv == '%')
+		format->var_s = "%";
 	else if (ft_strchr("di", format->conv))
 		format->var_i = va_arg(args, int);
 	else if (format->conv == 'u')
