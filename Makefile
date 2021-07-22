@@ -6,7 +6,7 @@
 #    By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/16 08:48:58 by prolling          #+#    #+#              #
-#    Updated: 2021/07/14 19:30:36 by prolling         ###   ########.fr        #
+#    Updated: 2021/07/22 15:43:16 by prolling         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,9 @@ $(NAME): clean
 	ranlib $(NAME)
 	rm -f *.o *.gch
 
-debug: $(NAME)
-	$(CC) -g -Wall -Wextra -Werror $(debug) $(headers) -lftprintf -L. -o debug
+debug:
+	#$(CC) -g -Wall -Wextra -Werror $(debug) $(headers) -lftprintf -L. -o debug
+	$(CC) -g -Wall -Wextra -Werror $(debug) $(headers) $(libft_src) $(printf_src) -o debug
 
 all: $(NAME)
 

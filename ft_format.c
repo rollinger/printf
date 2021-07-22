@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/14 11:26:38 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/22 15:51:13 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 * Builds the structure of conversion, flags and variable and returns it. Used
 * for later interpolation
 */
-t_format	*build_format_struct(char **fpos, va_list args)
+t_format	*build_format_struct(int *fpos, const char *fstr, va_list args)
 {
 	t_format *format;
 
 	format = init_format();
-	format->conv = *fpos[2];
+	format->conv = fstr[fpos[2]];
 	if (format->conv == 's')
 		format->var_s = va_arg(args, char *);
 	else if (format->conv == 'c')

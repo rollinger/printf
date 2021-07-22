@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 10:27:51 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/15 10:48:17 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/22 15:44:50 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,65 @@
 
 /*
 * Resets fpos to NULL at index 1 & 2
+* 0: counter for pos in fstr
+* 1: start of current block
+* 2: end of current block
+* 3: flag 1=normal, 2=interpolate
 */
-void	reset_fpos(char **fpos, const char *zero)
+void	reset_fpos(int *fpos, int zero)
 {
-	fpos[0] = (char *)zero;
-	fpos[1] = NULL;
-	fpos[2] = NULL;
+	fpos[0] = zero;
+	fpos[1] = 0;
+	fpos[2] = 0;
+	fpos[3] = 0;
 	return ;
 }
 
 /*
-* Sets fpos [0] to 1
+* Right shift down. [1]==[2] && [2]==0
 */
-void	shift_fpos(char **fpos)
+void	shift_fpos(int **fpos)
 {
-	fpos[0] = fpos[1];
+	fpos[1] = fpos[2];
+	fpos[2] = 0;
 	return ;
 }
 
+
 /*
-* Prints a character and returns the length
+* The strset() function returns a pointer to the first occurrence of any char
+* in the string s2 in the string s1.
+* RETURN: like the  strchr()  and strrchr() functions return a pointer to
+* the matched character or NULL if the character is not found.
+* The terminating null byte is considered part of the string, so that if c is
+* specified as '\0', these functions return a pointer to the terminator.
+*/
+char	*ft_strset(const char *s1, const char *s2)
+{
+	while (*s1 != '\0')
+	{
+		if (ft_strchr(s2, *s1))
+			return ((char *)s1);
+		++s1;
+	}
+	if (*s1 == '\0')
+		return ((char *)s1);
+	return (NULL);
+}
+
+/*
+* Returns a character pointer to the end of str (\0)
+*/
+char	*ft_strend(const char *str)
+{
+	while (*str != '\0')
+		++str;
+	return ((char *)str);
+}
+
+
+/*
+* Prints a character and returns 1 as the length
 */
 size_t	print_c(char c)
 {

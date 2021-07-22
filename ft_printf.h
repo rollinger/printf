@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/15 11:23:55 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/22 15:48:23 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "libft/libft.h"
 
 # define FORMAT_FLAG '%'
-# define CONVERSIONS "cspdiuxX"
+# define CONVERSIONS "cspdiuxX%"
 
 typedef struct	s_format
 {
@@ -33,8 +33,8 @@ typedef struct	s_format
 	size_t					flg_plus;
 }				t_format;
 
-int			ft_sprintf(char *str, const char *format, ...);
-int			ft_printf(const char *str, ...);
+int			ft_sprintf(char **str, const char *fstr, ...);
+int			ft_printf(const char *fstr, ...);
 /* Conversion Functions */
 void		ft_convert_variable(t_format *format);
 void		ft_convert_str(t_format *format);
@@ -44,11 +44,13 @@ void		ft_convert_uint(t_format *format);
 void		ft_convert_hex(t_format *format);
 void		ft_convert_ptr(t_format *format);
 /* Format Functions */
-t_format	*build_format_struct(char **fpos, va_list args);
+t_format	*build_format_struct(int *fpos, const char *fstr, va_list args);
 t_format	*init_format();
 void		free_format(t_format *format);
 /* Helper Function */
-void		reset_fpos(char **fpos, const char *zero);
+void		reset_fpos(int *fpos, int zero);
+char		*ft_strset(const char *s1, const char *s2);
+char		*ft_strend(const char *str);
 size_t		print_c(char c);
 size_t		print_s(char *s);
 

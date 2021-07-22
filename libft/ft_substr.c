@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 17:17:44 by prolling          #+#    #+#             */
-/*   Updated: 2021/05/26 13:27:14 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/15 14:04:58 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (sub);
 	ft_strlcpy(sub, (char *)(s + start), len + 1);
 	return (sub);
+}
+
+/*
+* Same like ft_substr, but it takes to pointer from start to end
+*/
+char	*ft_subpstr(char const *s, char const *start, char const *end)
+{
+	unsigned int start_idx;
+	size_t len;
+
+	start_idx = (unsigned int)(start - s);
+	len = (size_t)(end - start);
+	return (ft_substr(s, start_idx, len));
 }
