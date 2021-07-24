@@ -3,5 +3,6 @@
 *.gch
 *.h.gch
 main.c
+phitest
 debug.c
 *.txt
