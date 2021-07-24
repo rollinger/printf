@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:54:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/22 16:23:54 by prolling         ###   ########.fr       */
+/*   Updated: 2021/07/22 18:17:04 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,18 @@ static size_t	process_pos(const char *fstr, int *fpos)
 * Write formatted fstr to *str interpolating the args.
 * Worker Function for ft_sprintf and ft_printf
 * Return bytes written or zero on error/empty.
+* 
+* fpos[4]; //cnt, start, end, status
 */
-int ft_vprintf(char **str, const char *fstr, va_list args)
+char *ft_vprintf(const char *fstr, va_list args)
 {
 	int		fpos[4]; //cnt, start, end, status
 	char	*temp;
+	char 	*str;
 
-	*str = ft_calloc(sizeof(char), 1);
-	if (!*str || !*fstr)
-		return (-1);
+	str = ft_calloc(sizeof(char), 1);
+	if (!str || !*fstr)
+		return (NULL);
 
 	reset_fpos(fpos, 0);
 	while (fstr[fpos[0]] != '\0')
@@ -87,18 +90,18 @@ int ft_vprintf(char **str, const char *fstr, va_list args)
 		if (fpos[3] == 1)
 		{
 			temp = ft_substr((char const *)fstr, fpos[1], fpos[2] - fpos[1] + 1);
-			*str = ft_strjoin((const char *)*str, temp);
+			str = ft_strjoin((const char *)str, temp);
 			free(temp);
 		}
 		else if (fpos[3] == 2)
 		{
 			temp = interpolate_var(fpos, fstr, args);
-			*str = ft_strjoin((const char *)*str, temp);
+			str = ft_strjoin((const char *)str, temp);
 			free(temp);
 		}
 		fpos[0]++;
 	}
-	return (ft_strlen(*str));
+	return (str);
 }
 
 /*
@@ -108,14 +111,13 @@ int ft_vprintf(char **str, const char *fstr, va_list args)
 int ft_sprintf(char **str, const char *fstr, ...)
 {
 	va_list	args;
-	int		total;
 
-	if (!str || !fstr)
+	if (!fstr)
 		return (-1);
 	va_start(args, fstr);
-	total = ft_vprintf(str, fstr, args);
+	*str = ft_vprintf(fstr, args);
 	va_end(args);
-	return (total);
+	return (ft_strlen(*str));
 }
 
 /*
@@ -124,17 +126,17 @@ int ft_sprintf(char **str, const char *fstr, ...)
 */
 int	ft_printf(const char *fstr, ...)
 {
-	char 	**str;
+	char 	*str;
 	va_list	args;
 	int		total;
 
-	str = (char **)ft_calloc(sizeof(char *), 1);
-	if (!str || !fstr)
+	if (!fstr)
 		return (-1);
 	va_start(args, fstr);
-	total = ft_vprintf(str, fstr, args);
+	str = ft_vprintf(fstr, args);
 	va_end(args);
-	ft_putstr(*str);
+	ft_putstr(str);
+	total = ft_strlen(str);
 	free(str);
 	return (total);
 }

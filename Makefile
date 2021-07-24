@@ -21,6 +21,7 @@ printf_src = ft_sprintf.c ft_utils.c ft_format.c ft_convert.c \
 	ft_convert_ptr.c
 libft_src = libft/*.c libft/libft.h
 debug = debug.c
+phitest = ../phitest/*.c ../phitest/*.h
 
 $(NAME): clean
 	$(CC) -c $(FLAGS) $(headers) $(libft_src) $(printf_src)
@@ -28,9 +29,11 @@ $(NAME): clean
 	ranlib $(NAME)
 	rm -f *.o *.gch
 
-debug:
-	#$(CC) -g -Wall -Wextra -Werror $(debug) $(headers) -lftprintf -L. -o debug
+debug: tclean
 	$(CC) -g -Wall -Wextra -Werror $(debug) $(headers) $(libft_src) $(printf_src) -o debug
+
+phitest: tclean
+	$(CC) -g -Wall -Wextra -Werror $(phitest) $(headers) $(libft_src) $(printf_src) -lcmocka -o phitest
 
 all: $(NAME)
 
@@ -41,6 +44,10 @@ fclean: cleanlibft/libft.h
 	cd libft && make fclean
 	rm -f $(NAME)
 
-re : fclean all
+tclean:
+	rm -f phitest
+	rm -f debug
+
+re : fclean tclean all
 
 .PHONY:	all clean fclean re
