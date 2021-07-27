@@ -33,6 +33,7 @@ typedef struct	s_format
 	size_t					flg_alt_form;
 	size_t					flg_lpad;
 	size_t					flg_rpad;
+	char					pad_char;
 	size_t					field_width;
 }				t_format;
 

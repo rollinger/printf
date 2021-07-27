@@ -20,8 +20,12 @@
 void	ft_convert_int(t_format *format)
 {
 	//format->str = "INT";
-	format->str = ft_itoa(format->var_i);
 	format->is_neg = ft_is_neg(format->var_i);
+	if (format->is_neg)
+		format->str = ft_itoa(format->var_i *= -1);
+	else
+		format->str = ft_itoa(format->var_i);
+	
 	return ;
 }
 

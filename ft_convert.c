@@ -37,12 +37,32 @@ void	ft_convert_variable(t_format *format)
 
 void	ft_apply_flags_to_variable(t_format *format)
 {
+	/* Pad everything to a field width */
+	if (format->field_width > 0)
+	{
+		if (format->flg_rpad == 1)
+		{
+			if (format->flg_plus == 1 || format->is_neg == 1)
+				format->field_width--;
+			format->str = ft_rpad(format->str, format->field_width, format->pad_char);
+		}
+		else if (format->flg_lpad == 1)
+		{
+			if (format->flg_plus == 1 || format->is_neg == 1)
+				format->field_width--;
+			format->str = ft_lpad(format->str, format->field_width, format->pad_char);
+		}
+	}
 	if (ft_strchr("di", format->conv))
 	{
 		if (format->flg_plus == 1 && format->is_neg == 0)
 			format->str = ft_strjoin("+", format->str);
 		if (format->flg_space == 1 && format->is_neg == 0)
 			format->str = ft_strjoin(" ", format->str);
+		/**/
+		if (format->is_neg == 1)
+			format->str = ft_strjoin("-", format->str);
+		
 	}
 	if (format->flg_alt_form == 1)
 	{
@@ -55,9 +75,9 @@ void	ft_apply_flags_to_variable(t_format *format)
 	if (format->field_width > 0)
 	{
 		if (format->flg_rpad == 1)
-			format->str = ft_rpad(format->str, format->field_width, ' ');
+			format->str = ft_rpad(format->str, format->field_width, format->pad_char);
 		else
-			format->str = ft_lpad(format->str, format->field_width, ' ');
+			format->str = ft_lpad(format->str, format->field_width, format->pad_char);
 	}
 	return ;
 }

@@ -48,10 +48,15 @@ t_format	*build_format_struct(int *fpos, const char *fstr, va_list args)
 		format->flg_plus = 1;
 	if (ft_strchr(flagstr, '#'))
 		format->flg_alt_form = 1;
-	if (ft_strchr(flagstr, '0'))
-		format->flg_lpad = 1;
 	if (ft_strchr(flagstr, '-'))
 		format->flg_rpad = 1;
+	if (ft_strchr(flagstr, '0'))
+	{
+		if (format->flg_rpad == 1)
+			format->pad_char = ' ';
+		else
+			format->pad_char = '0';
+	}
 	free(flagstr);
 	return (format);
 }
@@ -74,6 +79,9 @@ t_format	*init_format()
 	format->flg_space = 0;
 	format->flg_alt_form = 0;
 	format->flg_plus = 0;
+	format->flg_lpad = 1;
+	format->flg_rpad = 0;
+	format->pad_char = ' ';
 	return (format);
 }
 
