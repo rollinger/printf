@@ -14,10 +14,11 @@
 
 /*
 * Converts the variable into the correct string representation at format->str
+* more conversions csipduxX
 */
 void	ft_convert_variable(t_format *format)
 {
-	/* more conversions csi - pduxX */
+	/*  */
 	if (format->conv == 's')
 		ft_convert_str(format);
 	else if (format->conv == 'c')
@@ -35,22 +36,27 @@ void	ft_convert_variable(t_format *format)
 	return ;
 }
 
+/*
+* Apply 
+*/
 void	ft_apply_flags_to_variable(t_format *format)
 {
-	/* Pad everything to a field width */
+	
 	if (format->field_width > 0)
 	{
 		if (format->flg_rpad == 1)
 		{
 			if (format->flg_plus == 1 || format->is_neg == 1)
 				format->field_width--;
-			format->str = ft_rpad(format->str, format->field_width, format->pad_char);
+			format->str = ft_rpad(format->str, format->field_width, \
+				format->pad_char);
 		}
 		else if (format->flg_lpad == 1)
 		{
 			if (format->flg_plus == 1 || format->is_neg == 1)
 				format->field_width--;
-			format->str = ft_lpad(format->str, format->field_width, format->pad_char);
+			format->str = ft_lpad(format->str, format->field_width, \
+			format->pad_char);
 		}
 	}
 	if (ft_strchr("di", format->conv))

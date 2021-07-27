@@ -29,17 +29,6 @@ void	reset_fpos(int *fpos, int zero)
 }
 
 /*
-* Right shift down. [1]==[2] && [2]==0
-*/
-void	shift_fpos(int **fpos)
-{
-	fpos[1] = fpos[2];
-	fpos[2] = 0;
-	return ;
-}
-
-
-/*
 * The strset() function returns a pointer to the first occurrence of any char
 * in the string s2 in the string s1.
 * RETURN: like the  strchr()  and strrchr() functions return a pointer to
@@ -80,7 +69,7 @@ size_t	ft_is_neg(long long int i)
 
 size_t	ft_get_field_width(const char *str)
 {
-	while(*str != '\0')
+	while (*str != '\0')
 	{
 		if (*str >= '1' && *str <= '9')
 			return (ft_atoi(str));
@@ -88,25 +77,3 @@ size_t	ft_get_field_width(const char *str)
 	}
 	return (0);
 }
-
-/*
-* Prints a character and returns 1 as the length
-
-size_t	print_c(char c)
-{
-	ft_putchar(c);
-	return (1);
-}*/
-
-/*
-* Prints the string and return the length of the string.
-
-size_t	print_s(char *s)
-{
-	if (s)
-	{
-		ft_putstr(s);
-		return (ft_strlen(s));
-	}
-	return (0);
-}*/

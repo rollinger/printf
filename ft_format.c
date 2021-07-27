@@ -18,54 +18,66 @@
 */
 t_format	*build_format_struct(int *fpos, const char *fstr, va_list args)
 {
-	t_format 	*format;
-	char		*flagstr;
+	t_format	*format;
 
 	format = init_format();
-	format->conv = fstr[fpos[2]];
-	if (format->conv == 's')
-		format->var_s = va_arg(args, char *);
-	else if (format->conv == 'c')
-		format->var_i = va_arg(args, int);
-	else if (format->conv == '%')
-		format->var_s = "%";
-	else if (ft_strchr("di", format->conv))
-		format->var_i = va_arg(args, int);
-	else if (format->conv == 'u')
-		format->var_ui = va_arg(args, unsigned int);
-	else if (ft_strchr("xX", format->conv))
-		format->var_ui = va_arg(args, unsigned int);
-	else if (ft_strchr("p", format->conv))
-		format->var_ulli = va_arg(args, unsigned long long int);
-	
-	/* Get flags " +" */
+	format = build_conv(format, fpos, fstr, args);
+	format = build_flags(format, fpos, fstr, args);
+	return (format);
+}
+
+t_format	*build_conv(t_format *f, int *fpos, const char *fstr, va_list args)
+{
+	f->conv = fstr[fpos[2]];
+	if (f->conv == 's')
+		f->var_s = va_arg(args, char *);
+	else if (f->conv == 'c')
+		f->var_i = va_arg(args, int);
+	else if (f->conv == '%')
+		f->var_s = "%";
+	else if (ft_strchr("di", f->conv))
+		f->var_i = va_arg(args, int);
+	else if (f->conv == 'u')
+		f->var_ui = va_arg(args, unsigned int);
+	else if (ft_strchr("xX", f->conv))
+		f->var_ui = va_arg(args, unsigned int);
+	else if (ft_strchr("p", f->conv))
+		f->var_ulli = va_arg(args, unsigned long long int);
+	return (f);
+}
+
+t_format	*build_flags(t_format *f, int *fpos, const char *fstr, va_list args)
+{
+	char		*flagstr;
+
+	(void) args;
 	flagstr = ft_substr(fstr, fpos[1] + 1, fpos[2] - fpos[1] - 1);
-	format->field_width = ft_get_field_width(flagstr);
+	f->field_width = ft_get_field_width(flagstr);
 	if (ft_strchr(flagstr, ' '))
-		format->flg_space = 1;
+		f->flg_space = 1;
 	if (ft_strchr(flagstr, '+'))
-		format->flg_plus = 1;
+		f->flg_plus = 1;
 	if (ft_strchr(flagstr, '#'))
-		format->flg_alt_form = 1;
+		f->flg_alt_form = 1;
 	if (ft_strchr(flagstr, '-'))
-		format->flg_rpad = 1;
+		f->flg_rpad = 1;
 	if (ft_strchr(flagstr, '0'))
 	{
-		if (format->flg_rpad == 1)
-			format->pad_char = ' ';
+		if (f->flg_rpad == 1)
+			f->pad_char = ' ';
 		else
-			format->pad_char = '0';
+			f->pad_char = '0';
 	}
 	free(flagstr);
-	return (format);
+	return (f);
 }
 
 /*
 * Inits an empty t_format type with defaults and returns it.
 */
-t_format	*init_format()
+t_format	*init_format(void)
 {
-	t_format *format;
+	t_format	*format;
 
 	format = (t_format *)malloc(sizeof(t_format));
 	format->str = NULL;
@@ -88,12 +100,12 @@ t_format	*init_format()
 * Frees the struct and all elements
 * ??? Does not need to free attached elements ???
 */
-void	free_format(t_format *format)
-{
-	/*if (format->str != NULL)
+/*if (format->str != NULL)
 		free(format->str);
 	if (format->var_s != NULL)
 		free(format->var_s);*/
+void	free_format(t_format *format)
+{
 	free(format);
 	return ;
 }

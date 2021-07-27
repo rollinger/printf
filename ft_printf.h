@@ -51,6 +51,8 @@ void		ft_convert_hex(t_format *format);
 void		ft_convert_ptr(t_format *format);
 /* Format Functions */
 t_format	*build_format_struct(int *fpos, const char *fstr, va_list args);
+t_format	*build_conv(t_format *f, int *fpos, const char *fstr, va_list args);
+t_format	*build_flags(t_format *f, int *fpos, const char *fstr, va_list args);
 t_format	*init_format();
 void		free_format(t_format *format);
 /* Helper Function */

@@ -35,8 +35,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 */
 char	*ft_subpstr(char const *s, char const *start, char const *end)
 {
-	unsigned int start_idx;
-	size_t len;
+	unsigned int	start_idx;
+	size_t			len;
 
 	start_idx = (unsigned int)(start - s);
 	len = (size_t)(end - start);

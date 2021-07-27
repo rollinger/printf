@@ -15,16 +15,16 @@
 /*
 * ft_lpad and ft_rpad pad the <str> with <c> for a total of <size>bytes. If the
 * size <= strlen(str) nothing happens. The function returns a ptr to the new
-* allocated str.
+* allocated str.tion has the new floor plan and two of
 */
 
-/**
-char *ft_pad_fragment()*/
-
-char *ft_seqc(size_t n, int c)
+/*
+* Returns a sequence of <n> times char <c>. Returns the <seq>
+*/
+char	*ft_seqc(size_t n, int c)
 {
-	char *seq;
-	char *m;
+	char	*seq;
+	char	*m;
 
 	if (!n || !c)
 		return (NULL);
@@ -32,15 +32,18 @@ char *ft_seqc(size_t n, int c)
 	if (!seq)
 		return (NULL);
 	m = seq;
-	while(n--)
+	while (n--)
 		*m++ = (unsigned char)c;
 	return (seq);
 }
 
-/***/
+/*
+* Expands a <str> to the total <size> and pads it on the left side with <c>
+* Returns the <padding>
+*/
 char	*ft_lpad(char *str, size_t size, int c)
 {
-	char *padding;
+	char	*padding;
 
 	if (!str || size <= ft_strlen(str))
 		return (str);
@@ -50,10 +53,13 @@ char	*ft_lpad(char *str, size_t size, int c)
 	return (NULL);
 }
 
-/***/
+/*
+* Expands a <str> to the total <size> and pads it on the right side with <c>
+* Returns the <padding>
+*/
 char	*ft_rpad(char *str, size_t size, int c)
 {
-	char *padding;
+	char	*padding;
 
 	if (!str || size <= ft_strlen(str))
 		return (str);
