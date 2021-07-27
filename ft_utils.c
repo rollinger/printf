@@ -68,19 +68,39 @@ char	*ft_strend(const char *str)
 	return ((char *)str);
 }
 
-
 /*
 * Prints a character and returns 1 as the length
 */
+size_t	ft_is_neg(long long int i)
+{
+	if (i < 0)
+		return (1);
+	return (0);
+}
+
+size_t	ft_get_field_width(const char *str)
+{
+	while(*str != '\0')
+	{
+		if (*str >= '1' && *str <= '9')
+			return (ft_atoi(str));
+		str++;
+	}
+	return (0);
+}
+
+/*
+* Prints a character and returns 1 as the length
+
 size_t	print_c(char c)
 {
 	ft_putchar(c);
 	return (1);
-}
+}*/
 
 /*
 * Prints the string and return the length of the string.
-*/
+
 size_t	print_s(char *s)
 {
 	if (s)
@@ -89,4 +109,4 @@ size_t	print_s(char *s)
 		return (ft_strlen(s));
 	}
 	return (0);
-}
+}*/

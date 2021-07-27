@@ -42,6 +42,8 @@ char	*ft_lpad(char *str, size_t size, int c)
 {
 	char *padding;
 
+	if (!str || size <= ft_strlen(str))
+		return (str);
 	padding = ft_seqc(size - ft_strlen(str), c);
 	if (padding)
 		return (ft_strjoin(padding, str));
@@ -53,6 +55,8 @@ char	*ft_rpad(char *str, size_t size, int c)
 {
 	char *padding;
 
+	if (!str || size <= ft_strlen(str))
+		return (str);
 	padding = ft_seqc(size - ft_strlen(str), c);
 	if (padding)
 		return (ft_strjoin(str, padding));

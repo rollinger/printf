@@ -23,6 +23,7 @@ static char	*interpolate_var(int *fpos, const char *fstr, va_list args)
 
 	format = build_format_struct(fpos, fstr, args);
 	ft_convert_variable(format);
+	ft_apply_flags_to_variable(format);
 	str = ft_strdup(format->str);
 	free_format(format);
 	return (str);
