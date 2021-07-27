@@ -22,7 +22,6 @@ t_format	*build_format_struct(int *fpos, const char *fstr, va_list args)
 	char		*flagstr;
 
 	format = init_format();
-	/* Get conversions csixXpdu*/
 	format->conv = fstr[fpos[2]];
 	if (format->conv == 's')
 		format->var_s = va_arg(args, char *);
