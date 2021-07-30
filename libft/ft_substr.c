@@ -31,7 +31,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 }
 
 /*
-* Same like ft_substr, but it takes to pointer from start to end
+* Same like ft_substr, but it takes two pointer from start to end
 */
 char	*ft_subpstr(char const *s, char const *start, char const *end)
 {

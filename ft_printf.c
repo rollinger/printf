@@ -77,9 +77,9 @@ char	*ft_vprintf(const char *fstr, va_list args)
 {
 	int		fpos[4];
 	char	*temp;
-	char	*str;
+	char	**str;
 
-	str = ft_calloc(sizeof(char), 1);
+	str = (char **)malloc(sizeof(char *) * 1);
 	if (!str || !*fstr)
 		return (NULL);
 	reset_fpos(fpos, 0);
@@ -90,18 +90,16 @@ char	*ft_vprintf(const char *fstr, va_list args)
 		{
 			temp = ft_substr((char const *)fstr, \
 				fpos[1], fpos[2] - fpos[1] + 1);
-			str = ft_strjoin((const char *)str, temp);
-			free(temp);
+			*str = ft_strfjoin(*str, temp);
 		}
 		else if (fpos[3] == 2)
 		{
 			temp = interpolate_var(fpos, fstr, args);
-			str = ft_strjoin((const char *)str, temp);
-			free(temp);
+			*str = ft_strfjoin(*str, temp);
 		}
 		fpos[0]++;
 	}
-	return (str);
+	return (*str);
 }
 
 /*

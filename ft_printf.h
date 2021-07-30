@@ -62,7 +62,6 @@ char		*ft_strset(const char *s1, const char *s2);
 char		*ft_strend(const char *str);
 size_t		ft_is_neg(long long int i);
 size_t		ft_get_field_width(const char *str);
-size_t		print_c(char c);
-size_t		print_s(char *s);
+char    	*ft_strfjoin(char *str1, char *str2);
 
 #endif
