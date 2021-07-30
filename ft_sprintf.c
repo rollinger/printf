@@ -36,7 +36,7 @@ static char	*interpolate_var(int *fpos, const char *fstr, va_list args)
 * Returns fpos[3].
 * //if FORMAT_FLAG then strchr until CONVERSIONS+FORMAT_FLAG and set c,s,e,f=2
 * //else then strchr until FORMAT_FLAG and set c,s,e,f=1
-* //if
+* fpos[4] = counter, start, end, flag
 */
 static size_t	process_pos(const char *fstr, int *fpos)
 {
@@ -44,24 +44,23 @@ static size_t	process_pos(const char *fstr, int *fpos)
 	const char	*pend;
 
 	pos = &fstr[fpos[0]];
-
 	if (*pos == FORMAT_FLAG)
 	{
 		pend = ft_strset(pos + 1, CONVERSIONS);
-		fpos[1] = fpos[0]; //start
-		fpos[2] = (int)(pend - fstr); //end
-		fpos[3] = 2; //flag
+		fpos[1] = fpos[0];
+		fpos[2] = (int)(pend - fstr);
+		fpos[3] = 2;
 		fpos[0] = fpos[2];
 	}
 	else
 	{
 		pend = ft_strchr(pos, FORMAT_FLAG);
-		fpos[1] = fpos[0]; //start
+		fpos[1] = fpos[0];
 		if (pend)
-			fpos[2] = (int)(pend - fstr - 1); //end
+			fpos[2] = (int)(pend - fstr - 1);
 		else
 			fpos[2] = (int)(ft_strend(fstr) - fstr - 1);
-		fpos[3] = 1; //flag
+		fpos[3] = 1;
 		fpos[0] = fpos[2];
 	}
 	return (fpos[3]);
@@ -72,25 +71,25 @@ static size_t	process_pos(const char *fstr, int *fpos)
 * Worker Function for ft_sprintf and ft_printf
 * Return bytes written or zero on error/empty.
 * 
-* fpos[4]; //cnt, start, end, status
+* fpos[4] = counter, start, end, flag
 */
-char *ft_vprintf(const char *fstr, va_list args)
+char	*ft_vprintf(const char *fstr, va_list args)
 {
-	int		fpos[4]; //cnt, start, end, status
+	int		fpos[4];
 	char	*temp;
-	char 	*str;
+	char	*str;
 
 	str = ft_calloc(sizeof(char), 1);
 	if (!str || !*fstr)
 		return (NULL);
-
 	reset_fpos(fpos, 0);
 	while (fstr[fpos[0]] != '\0')
 	{
 		process_pos(fstr, fpos);
 		if (fpos[3] == 1)
 		{
-			temp = ft_substr((char const *)fstr, fpos[1], fpos[2] - fpos[1] + 1);
+			temp = ft_substr((char const *)fstr, \
+				fpos[1], fpos[2] - fpos[1] + 1);
 			str = ft_strjoin((const char *)str, temp);
 			free(temp);
 		}
@@ -109,7 +108,7 @@ char *ft_vprintf(const char *fstr, va_list args)
 * Write formatted <fstr> to <str>. Return bytes written.
 * str is defined outside and it is not freed for later reuse.
 */
-int ft_sprintf(char **str, const char *fstr, ...)
+int	ft_sprintf(char **str, const char *fstr, ...)
 {
 	va_list	args;
 
@@ -127,7 +126,7 @@ int ft_sprintf(char **str, const char *fstr, ...)
 */
 int	ft_printf(const char *fstr, ...)
 {
-	char 	*str;
+	char	*str;
 	va_list	args;
 	int		total;
 

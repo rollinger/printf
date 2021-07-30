@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include "libft/libft.h"
@@ -19,7 +19,7 @@
 # define FORMAT_FLAG '%'
 # define CONVERSIONS "cspdiuxX%"
 
-typedef struct	s_format
+typedef struct s_format
 {
 	char					*str;
 	char					conv;
@@ -52,8 +52,9 @@ void		ft_convert_ptr(t_format *format);
 /* Format Functions */
 t_format	*build_format_struct(int *fpos, const char *fstr, va_list args);
 t_format	*build_conv(t_format *f, int *fpos, const char *fstr, va_list args);
-t_format	*build_flags(t_format *f, int *fpos, const char *fstr, va_list args);
-t_format	*init_format();
+t_format	*build_flags(t_format *f, int *fpos, \
+	const char *fstr, va_list args);
+t_format	*init_format(void);
 void		free_format(t_format *format);
 /* Helper Function */
 void		reset_fpos(int *fpos, int zero);
