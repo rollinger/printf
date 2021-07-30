@@ -16,7 +16,7 @@ CC		= gcc
 ARCH	= ar cr
 
 headers = ft_printf.h
-printf_src = ft_sprintf.c ft_utils.c ft_format.c ft_convert.c \
+printf_src = ft_printf.c ft_utils.c ft_format.c ft_convert.c \
 	ft_convert_str.c ft_convert_char.c ft_convert_int.c ft_convert_hex.c \
 	ft_convert_ptr.c
 libft_src = libft/*.c libft/libft.h

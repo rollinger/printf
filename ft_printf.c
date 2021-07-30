@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_sprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/16 08:37:55 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/12 11:26:35 by prolling         ###   ########.fr       */
+/*   Created: 2021/07/12 10:54:50 by prolling          #+#    #+#             */
+/*   Updated: 2021/07/22 18:17:04 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,76 +14,129 @@
 
 /*
 * Interpolates (convert and print) the variable given va_arg and fpos
-* Returns the length of the printed string
+* Returns the *t_format
 */
-static size_t	interpolate_var(char **fpos, va_list args)
+static char	*interpolate_var(int *fpos, const char *fstr, va_list args)
 {
 	t_format	*format;
-	size_t	len;
+	char		*str;
 
-	format = build_format_struct(fpos, args);
+	format = build_format_struct(fpos, fstr, args);
 	ft_convert_variable(format);
-	len = print_s(format->str);
+	ft_apply_flags_to_variable(format);
+	str = ft_strdup(format->str);
 	free_format(format);
-	return (len);
+	return (str);
 }
 
 /*
 * processes the character pos and stores beginning & end of the formatter in
-* fpos[1&2]. Returns 1 if a formatter was found, otherwise 0.
+* fpos[1&2].
+* Sets the fpos[3] status flag: 0-default/none, 1-cpy normal, 2-interpolate,
+* Returns fpos[3].
+* //if FORMAT_FLAG then strchr until CONVERSIONS+FORMAT_FLAG and set c,s,e,f=2
+* //else then strchr until FORMAT_FLAG and set c,s,e,f=1
+* fpos[4] = counter, start, end, flag
 */
-static size_t	process_pos(const char *p, char **fpos, int *total)
+static size_t	process_pos(const char *fstr, int *fpos)
 {
-	if (fpos[1] == NULL)
+	const char	*pos;
+	const char	*pend;
+
+	pos = &fstr[fpos[0]];
+	if (*pos == FORMAT_FLAG)
 	{
-		if (*p == FORMAT_FLAG)
-			fpos[1] = (char *)p;
+		pend = ft_strset(pos + 1, CONVERSIONS);
+		fpos[1] = fpos[0];
+		fpos[2] = (int)(pend - fstr);
+		fpos[3] = 2;
+		fpos[0] = fpos[2];
+	}
+	else
+	{
+		pend = ft_strchr(pos, FORMAT_FLAG);
+		fpos[1] = fpos[0];
+		if (pend)
+			fpos[2] = (int)(pend - fstr - 1);
 		else
-			*total += print_c(*p);
+			fpos[2] = (int)(ft_strend(fstr) - fstr - 1);
+		fpos[3] = 1;
+		fpos[0] = fpos[2];
 	}
-	else if (ft_strchr(CONVERSIONS, *p))
-	{
-		fpos[2] = (char *)p;
-		return (1);
-	}
-	else if (*p == '%')
-	{
-		*total += print_c(*p);
-		reset_fpos(fpos);
-	}
-	return (0);
+	return (fpos[3]);
 }
 
 /*
-* printf takes a string and variadic data, interpolates it and prints it out.
-* <str>	format string containing %<flags><conv> formatter.
-* ... elipsis for variadic arguments.
-* VARIABLES:
-* va_list	args; 	=> variadic argument list
-* int		total;	=> total printed characters
-* char	*fpos[3];	=> [str_start, format_start, format_end]
-* char	*var_str;
-* ALGORITHM:
+* Write formatted fstr to *str interpolating the args.
+* Worker Function for ft_sprintf and ft_printf
+* Return bytes written or zero on error/empty.
+* 
+* fpos[4] = counter, start, end, flag
+*/
+char	*ft_vprintf(const char *fstr, va_list args)
+{
+	int		fpos[4];
+	char	*temp;
+	char	*str;
+
+	str = ft_calloc(sizeof(char), 1);
+	if (!str || !*fstr)
+		return (NULL);
+	reset_fpos(fpos, 0);
+	while (fstr[fpos[0]] != '\0')
+	{
+		process_pos(fstr, fpos);
+		if (fpos[3] == 1)
+		{
+			temp = ft_substr((char const *)fstr, \
+				fpos[1], fpos[2] - fpos[1] + 1);
+			str = ft_strjoin((const char *)str, temp);
+			free(temp);
+		}
+		else if (fpos[3] == 2)
+		{
+			temp = interpolate_var(fpos, fstr, args);
+			str = ft_strjoin((const char *)str, temp);
+			free(temp);
+		}
+		fpos[0]++;
+	}
+	return (str);
+}
+
+/*
+* Write formatted <fstr> to <str>. Return bytes written.
+* str is defined outside and it is not freed for later reuse.
+*/
+int	ft_sprintf(char **str, const char *fstr, ...)
+{
+	va_list	args;
+
+	if (!fstr)
+		return (-1);
+	va_start(args, fstr);
+	*str = ft_vprintf(fstr, args);
+	va_end(args);
+	return (ft_strlen(*str));
+}
+
+/*
+* Write formatted fstr to stdout. Return bytes written.
+* Creates str itself for printing to stdout and frees it before returning.
 */
 int	ft_printf(const char *fstr, ...)
 {
-	va_list		args;
-	int			total;
-	char		*fpos[3];
+	char	*str;
+	va_list	args;
+	int		total;
 
-	fpos[0] = (char *)fstr;
-	total = 0;
-	reset_fpos(fpos);
+	if (!fstr)
+		return (-1);
 	va_start(args, fstr);
-	while (*fstr != '\0')
-	{
-		if (process_pos(fstr, fpos, &total) == 1)
-		{
-			total += interpolate_var(fpos, args);
-			reset_fpos(fpos);
-		}
-		fstr++;
-	}
+	str = ft_vprintf(fstr, args);
 	va_end(args);
+	ft_putstr(str);
+	total = ft_strlen(str);
+	free(str);
 	return (total);
 }
