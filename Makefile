@@ -40,7 +40,7 @@ all: $(NAME)
 clean:
 	rm -f *.o *.gch
 
-fclean: cleanlibft/libft.h
+fclean: libft/libft.h
 	cd libft && make fclean
 	rm -f $(NAME)
 
