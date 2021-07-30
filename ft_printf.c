@@ -79,7 +79,7 @@ char	*ft_vprintf(const char *fstr, va_list args)
 	char	*temp;
 	char	**str;
 
-	str = (char **)malloc(sizeof(char *) * 1);
+	str = (char **)ft_calloc(sizeof(char *), 1);
 	if (!str || !*fstr)
 		return (NULL);
 	reset_fpos(fpos, 0);
