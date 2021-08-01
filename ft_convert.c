@@ -60,18 +60,18 @@ void	ft_apply_flags_to_variable(t_format *format)
 	if (ft_strchr("di", format->conv))
 	{
 		if (format->flg_plus == 1 && format->is_neg == 0)
-			format->str = ft_strjoin("+", format->str);
+			format->str = ft_strfjoin(ft_strdup("+"), format->str);
 		if (format->flg_space == 1 && format->is_neg == 0)
-			format->str = ft_strjoin(" ", format->str);
+			format->str = ft_strfjoin(ft_strdup(" "), format->str);
 		if (format->is_neg == 1)
-			format->str = ft_strjoin("-", format->str);
+			format->str = ft_strfjoin(ft_strdup("-"), format->str);
 	}
 	if (format->flg_alt_form == 1)
 	{
 		if (format->conv == 'x')
-			format->str = ft_strjoin("0x", format->str);
+			format->str = ft_strfjoin(ft_strdup("0x"), format->str);
 		else if (format->conv == 'X')
-			format->str = ft_strjoin("0X", format->str);
+			format->str = ft_strfjoin(ft_strdup("0X"), format->str);
 	}
 	if (format->field_width > 0)
 	{

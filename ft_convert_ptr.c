@@ -19,6 +19,6 @@
 */
 void	ft_convert_ptr(t_format *format)
 {
-	format->str = ft_strjoin("0x", ft_uitox(format->var_ulli));
+	format->str = ft_strfjoin(ft_strdup("0x"), ft_uitox(format->var_ulli));
 	return ;
 }

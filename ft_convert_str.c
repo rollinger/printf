@@ -19,6 +19,6 @@
 */
 void	ft_convert_str(t_format *format)
 {
-	format->str = ft_strdup(format->var_s);
+	format->str = ft_strfjoin(format->str, ft_strdup(format->var_s));
 	return ;
 }

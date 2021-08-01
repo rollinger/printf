@@ -77,9 +77,9 @@ char	*ft_vprintf(const char *fstr, va_list args)
 {
 	int		fpos[4];
 	char	*temp;
-	char	**str;
+	char	*str;
 
-	str = (char **)ft_calloc(sizeof(char *), 1);
+	str = (char *)ft_calloc(sizeof(char), 1);
 	if (!str || !*fstr)
 		return (NULL);
 	reset_fpos(fpos, 0);
@@ -90,32 +90,32 @@ char	*ft_vprintf(const char *fstr, va_list args)
 		{
 			temp = ft_substr((char const *)fstr, \
 				fpos[1], fpos[2] - fpos[1] + 1);
-			*str = ft_strfjoin(*str, temp);
+			str = ft_strfjoin(str, temp);
 		}
 		else if (fpos[3] == 2)
 		{
 			temp = interpolate_var(fpos, fstr, args);
-			*str = ft_strfjoin(*str, temp);
+			str = ft_strfjoin(str, temp);
 		}
 		fpos[0]++;
 	}
-	return (*str);
+	return (str);
 }
 
 /*
 * Write formatted <fstr> to <str>. Return bytes written.
 * str is defined outside and it is not freed for later reuse.
 */
-int	ft_sprintf(char **str, const char *fstr, ...)
+int	ft_sprintf(char *str, const char *fstr, ...)
 {
 	va_list	args;
 
 	if (!fstr)
 		return (-1);
 	va_start(args, fstr);
-	*str = ft_vprintf(fstr, args);
+	str = ft_vprintf(fstr, args);
 	va_end(args);
-	return (ft_strlen(*str));
+	return (ft_strlen(str));
 }
 
 /*

@@ -30,11 +30,17 @@ t_format	*build_conv(t_format *f, int *fpos, const char *fstr, va_list args)
 {
 	f->conv = fstr[fpos[2]];
 	if (f->conv == 's')
-		f->var_s = va_arg(args, char *);
+	{
+		free(f->var_s);
+		f->var_s = ft_strdup(va_arg(args, char *));
+	}
 	else if (f->conv == 'c')
 		f->var_i = va_arg(args, int);
 	else if (f->conv == '%')
-		f->var_s = "%";
+	{
+		free(f->var_s);
+		f->var_s = ft_strdup("%");
+	}
 	else if (ft_strchr("di", f->conv))
 		f->var_i = va_arg(args, int);
 	else if (f->conv == 'u')
@@ -51,7 +57,7 @@ t_format	*build_flags(t_format *f, int *fpos, const char *fstr, va_list args)
 	char		*flagstr;
 
 	(void) args;
-	flagstr = ft_substr(fstr, fpos[1] + 1, fpos[2] - fpos[1] - 1);
+	flagstr = ft_substr(fstr, fpos[1], fpos[2] - fpos[1] + 1);
 	f->field_width = ft_get_field_width(flagstr);
 	if (ft_strchr(flagstr, ' '))
 		f->flg_space = 1;
@@ -80,9 +86,9 @@ t_format	*init_format(void)
 	t_format	*format;
 
 	format = (t_format *)malloc(sizeof(t_format));
-	format->str = NULL;
+	format->str = (char *)ft_calloc(sizeof(char), 1);
 	format->conv = 0;
-	format->var_s = NULL;
+	format->var_s = (char *)ft_calloc(sizeof(char), 1);
 	format->var_i = 0;
 	format->var_ulli = 0;
 	format->is_neg = 0;
@@ -98,14 +104,15 @@ t_format	*init_format(void)
 
 /*
 * Frees the struct and all elements
-* ??? Does not need to free attached elements ???
 */
-/*if (format->str != NULL)
-		free(format->str);
-	if (format->var_s != NULL)
-		free(format->var_s);*/
 void	free_format(t_format *format)
 {
-	free(format);
+	/**/
+	if (format->str)
+		free(format->str);
+	if (format->var_s)
+		free(format->var_s);
+	if (format)
+		free(format);
 	return ;
 }
