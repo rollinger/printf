@@ -19,6 +19,6 @@
 */
 void	ft_convert_char(t_format *format)
 {
-	format->str = ft_ctos(format->var_i);
+	format->str = ft_strfjoin(format->str, ft_ctos(format->var_i));
 	return ;
 }

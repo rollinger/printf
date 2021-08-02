@@ -40,11 +40,11 @@ all: $(NAME)
 clean:
 	rm -f *.o *.gch
 
-fclean: libft/libft.h
+fclean: clean
 	cd libft && make fclean
 	rm -f $(NAME)
 
-tclean:
+tclean: fclean
 	rm -f phitest
 	rm -f debug
 

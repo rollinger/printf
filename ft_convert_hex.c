@@ -19,7 +19,7 @@
 */
 void	ft_convert_hex(t_format *format)
 {
-	format->str = ft_uitox(format->var_ui);
+	format->str = ft_strfjoin(format->str, ft_uitox(format->var_ui));
 	if (format->conv == 'X')
 		format->str = ft_strupcase(format->str);
 	return ;

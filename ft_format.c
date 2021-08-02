@@ -57,7 +57,7 @@ t_format	*build_flags(t_format *f, int *fpos, const char *fstr, va_list args)
 	char		*flagstr;
 
 	(void) args;
-	flagstr = ft_substr(fstr, fpos[1], fpos[2] - fpos[1] + 1);
+	flagstr = ft_substr(fstr, fpos[1] + 1, fpos[2] - fpos[1] - 1);
 	f->field_width = ft_get_field_width(flagstr);
 	if (ft_strchr(flagstr, ' '))
 		f->flg_space = 1;
@@ -103,6 +103,7 @@ t_format	*init_format(void)
 }
 
 /*
+
 * Frees the struct and all elements
 */
 void	free_format(t_format *format)
@@ -112,7 +113,7 @@ void	free_format(t_format *format)
 		free(format->str);
 	if (format->var_s)
 		free(format->var_s);
-	if (format)
-		free(format);
+	//if (format)
+	//	free(format);
 	return ;
 }

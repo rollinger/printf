@@ -23,7 +23,7 @@ void	ft_convert_variable(t_format *format)
 	else if (format->conv == 'c')
 		ft_convert_char(format);
 	else if (format->conv == '%')
-		format->str = "%";
+		format->str = ft_strdup("%");
 	else if (ft_strchr("di", format->conv))
 		ft_convert_int(format);
 	else if (format->conv == 'u')
