@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_convert.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:10 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/22 16:16:04 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/03 12:41:32 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ void	ft_convert_variable(t_format *format)
 	return ;
 }
 
-/*
-* Apply 
-*/
-void	ft_apply_flags_to_variable(t_format *format)
+/* field width flag */
+void	ft_apply_format_field_width(t_format *format)
 {
 	if (format->field_width > 0)
 	{
@@ -57,6 +55,12 @@ void	ft_apply_flags_to_variable(t_format *format)
 			format->pad_char);
 		}
 	}
+	return ;
+}
+
+/* decimal flags */
+void	ft_apply_format_int_flags(t_format *format)
+{
 	if (ft_strchr("di", format->conv))
 	{
 		if (format->flg_plus == 1 && format->is_neg == 0)
@@ -66,6 +70,12 @@ void	ft_apply_flags_to_variable(t_format *format)
 		if (format->is_neg == 1)
 			format->str = ft_strfjoin(ft_strdup("-"), format->str);
 	}
+	return ;
+}
+
+/* flag alternative form  */
+void	ft_apply_format_flg_alt_form(t_format *format)
+{
 	if (format->flg_alt_form == 1)
 	{
 		if (format->conv == 'x')
@@ -73,14 +83,16 @@ void	ft_apply_flags_to_variable(t_format *format)
 		else if (format->conv == 'X')
 			format->str = ft_strfjoin(ft_strdup("0X"), format->str);
 	}
-	if (format->field_width > 0)
-	{
-		if (format->flg_rpad == 1)
-			format->str = ft_rpad(format->str, \
-				format->field_width, format->pad_char);
-		else
-			format->str = ft_lpad(format->str, \
-				format->field_width, format->pad_char);
-	}
+	return ;
+}
+
+/*
+* Apply various flags to variable
+*/
+void	ft_apply_flags_to_variable(t_format *format)
+{
+	ft_apply_format_field_width(format);
+	ft_apply_format_int_flags(format);
+	ft_apply_format_flg_alt_form(format);
 	return ;
 }
