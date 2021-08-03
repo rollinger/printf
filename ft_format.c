@@ -31,14 +31,14 @@ t_format	*build_conv(t_format *f, int *fpos, const char *fstr, va_list args)
 	f->conv = fstr[fpos[2]];
 	if (f->conv == 's')
 	{
-		free(f->var_s);
+		//free(f->var_s);
 		f->var_s = ft_strdup(va_arg(args, char *));
 	}
 	else if (f->conv == 'c')
 		f->var_i = va_arg(args, int);
 	else if (f->conv == '%')
 	{
-		free(f->var_s);
+		//free(f->var_s);
 		f->var_s = ft_strdup("%");
 	}
 	else if (ft_strchr("di", f->conv))
@@ -103,17 +103,15 @@ t_format	*init_format(void)
 }
 
 /*
-
 * Frees the struct and all elements
 */
 void	free_format(t_format *format)
 {
-	/**/
 	if (format->str)
 		free(format->str);
 	if (format->var_s)
 		free(format->var_s);
-	//if (format)
-	//	free(format);
+	if (format)
+		free(format);
 	return ;
 }

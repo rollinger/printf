@@ -21,9 +21,10 @@ void	ft_convert_int(t_format *format)
 {
 	format->is_neg = ft_is_neg(format->var_i);
 	if (format->is_neg)
-		format->str = ft_strfjoin(format->str, ft_itoa(format->var_i *= -1));
+		format->var_ulli = (unsigned long long int)format->var_i * -1;
 	else
-		format->str = ft_strfjoin(format->str, ft_itoa(format->var_i));
+		format->var_ulli = format->var_i;
+	format->str = ft_strfjoin(format->str, ft_uitoa(format->var_ulli));
 	return ;
 }
 
