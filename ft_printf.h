@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/03 13:39:55 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/03 14:05:17 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ t_format	*build_format_struct(int *fpos, const char *fstr, va_list args);
 t_format	*build_conv(t_format *f, int *fpos, \
 	const char *fstr, va_list args);
 t_format	*build_flags(t_format *f, int *fpos, \
-	const char *fstr, va_list args);
-t_format	*init_format(void);
+	const char *fstr);
+t_format	*init_format(t_format *format);
 void		free_format(t_format *format);
 /* Helper Function */
 void		reset_fpos(int *fpos, int zero);

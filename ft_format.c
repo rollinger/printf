@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/03 13:35:21 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/03 14:05:31 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ t_format	*build_format_struct(int *fpos, const char *fstr, va_list args)
 {
 	t_format	*format;
 
-	format = init_format();
+	format = (t_format *)malloc(sizeof(t_format));
+	format = init_format(format);
 	format = build_conv(format, fpos, fstr, args);
-	format = build_flags(format, fpos, fstr, args);
+	format = build_flags(format, fpos, fstr);
 	return (format);
 }
 
@@ -46,11 +47,10 @@ t_format	*build_conv(t_format *f, int *fpos, const char *fstr, va_list args)
 	return (f);
 }
 
-t_format	*build_flags(t_format *f, int *fpos, const char *fstr, va_list args)
+t_format	*build_flags(t_format *f, int *fpos, const char *fstr)
 {
 	char		*flagstr;
 
-	(void) args;
 	flagstr = ft_substr(fstr, fpos[1] + 1, fpos[2] - fpos[1] - 1);
 	f->field_width = ft_get_field_width(flagstr);
 	if (ft_strchr(flagstr, ' '))
@@ -75,14 +75,11 @@ t_format	*build_flags(t_format *f, int *fpos, const char *fstr, va_list args)
 /*
 * Inits an empty t_format type with defaults and returns it.
 */
-t_format	*init_format(void)
+t_format	*init_format(t_format *format)
 {
-	t_format	*format;
-
-	format = (t_format *)malloc(sizeof(t_format));
-	format->str = (char *)ft_calloc(sizeof(char), 1);
+	format->str = NULL;//(char *)ft_calloc(sizeof(char), 1);
 	format->conv = 0;
-	format->var_s = (char *)ft_calloc(sizeof(char), 1);
+	format->var_s = NULL;//(char *)ft_calloc(sizeof(char), 1);
 	format->var_i = 0;
 	format->var_c = 0;
 	format->var_ulli = 0;
@@ -103,11 +100,11 @@ t_format	*init_format(void)
 */
 void	free_format(t_format *format)
 {
-	if (format->str)
+	if (format->str != NULL)
 		free(format->str);
-	if (format->var_s)
-		free(format->var_s);
-	if (format)
+	if (format->var_s != NULL)
+		free(format->var_s );
+	if (format != NULL)
 		free(format);
 	return ;
 }
