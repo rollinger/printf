@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/03 12:30:55 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/03 13:35:21 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,11 @@ t_format	*build_conv(t_format *f, int *fpos, const char *fstr, va_list args)
 {
 	f->conv = fstr[fpos[2]];
 	if (f->conv == 's')
-	{
-		//free(f->var_s);
 		f->var_s = ft_strdup(va_arg(args, char *));
-	}
 	else if (f->conv == 'c')
 		f->var_c = va_arg(args, int);
 	else if (f->conv == '%')
-	{
-		//free(f->var_s);
 		f->var_s = ft_strdup("%");
-	}
 	else if (ft_strchr("di", f->conv))
 		f->var_i = va_arg(args, int);
 	else if (f->conv == 'u')
@@ -113,7 +107,7 @@ void	free_format(t_format *format)
 		free(format->str);
 	if (format->var_s)
 		free(format->var_s);
-	//if (format)
-	//	free(format);
+	if (format)
+		free(format);
 	return ;
 }

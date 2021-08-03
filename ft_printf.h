@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/22 17:22:37 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/03 13:39:55 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void		ft_convert_variable(t_format *format);
 void		ft_apply_flags_to_variable(t_format *format);
 void		ft_convert_str(t_format *format);
 void		ft_convert_char(t_format *format);
+void		ft_convert_percent(t_format *format);
 void		ft_convert_int(t_format *format);
 void		ft_convert_uint(t_format *format);
 void		ft_convert_hex(t_format *format);

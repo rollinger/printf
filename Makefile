@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/16 08:48:58 by prolling          #+#    #+#              #
-#    Updated: 2021/07/22 15:43:16 by prolling         ###   ########.fr        #
+#    Updated: 2021/08/03 13:40:20 by prolling         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ ARCH	= ar cr
 headers = ft_printf.h
 printf_src = ft_printf.c ft_utils.c ft_format.c ft_convert.c ft_safejoin.c \
 	ft_convert_str.c ft_convert_char.c ft_convert_int.c ft_convert_hex.c \
-	ft_convert_ptr.c
+	ft_convert_ptr.c ft_convert_per.c
 libft_src = libft/*.c libft/libft.h
 debug = debug.c
 phitest = ../phitest/*.c ../phitest/*.h

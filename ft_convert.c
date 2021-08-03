@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:10 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/03 12:41:32 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/03 13:39:59 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_convert_variable(t_format *format)
 	else if (format->conv == 'c')
 		ft_convert_char(format);
 	else if (format->conv == '%')
-		format->str = ft_strdup("%");
+		ft_convert_percent(format);
 	else if (ft_strchr("di", format->conv))
 		ft_convert_int(format);
 	else if (format->conv == 'u')
