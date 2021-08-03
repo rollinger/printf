@@ -25,6 +25,8 @@ static char	*interpolate_var(int *fpos, const char *fstr, va_list args)
 	ft_convert_variable(format);
 	ft_apply_flags_to_variable(format);
 	str = ft_strdup(format->str);
+	if (format->flg_break != 0) //break cond
+		fpos[3] = -1;
 	free_format(format);
 	return (str);
 }
@@ -97,6 +99,8 @@ char	*ft_vprintf(const char *fstr, va_list args)
 			temp = interpolate_var(fpos, fstr, args);
 			str = ft_strfjoin(str, temp);
 		}
+		if (fpos[3] < 0) // exit cond
+			break ;
 		fpos[0]++;
 	}
 	return (str);

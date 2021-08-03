@@ -24,10 +24,12 @@ typedef struct s_format
 	char					*str;
 	char					conv;
 	char					*var_s;
+	char					var_c;
 	int						var_i;
 	unsigned int			var_ui;
 	unsigned long long int	var_ulli;
 	size_t					is_neg;
+	short					flg_break;
 	size_t					flg_space;
 	size_t					flg_plus;
 	size_t					flg_alt_form;
@@ -35,6 +37,7 @@ typedef struct s_format
 	size_t					flg_rpad;
 	char					pad_char;
 	size_t					field_width;
+	
 }				t_format;
 
 int			ft_sprintf(char *str, const char *fstr, ...);

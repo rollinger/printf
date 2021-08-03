@@ -35,7 +35,7 @@ t_format	*build_conv(t_format *f, int *fpos, const char *fstr, va_list args)
 		f->var_s = ft_strdup(va_arg(args, char *));
 	}
 	else if (f->conv == 'c')
-		f->var_i = va_arg(args, int);
+		f->var_c = va_arg(args, int);
 	else if (f->conv == '%')
 	{
 		//free(f->var_s);
@@ -90,9 +90,11 @@ t_format	*init_format(void)
 	format->conv = 0;
 	format->var_s = (char *)ft_calloc(sizeof(char), 1);
 	format->var_i = 0;
+	format->var_c = 0;
 	format->var_ulli = 0;
 	format->is_neg = 0;
 	format->field_width = 0;
+	format->flg_break = 0;
 	format->flg_space = 0;
 	format->flg_alt_form = 0;
 	format->flg_plus = 0;
@@ -111,7 +113,7 @@ void	free_format(t_format *format)
 		free(format->str);
 	if (format->var_s)
 		free(format->var_s);
-	if (format)
-		free(format);
+	//if (format)
+	//	free(format);
 	return ;
 }
