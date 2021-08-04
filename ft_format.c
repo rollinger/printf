@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/03 14:05:31 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/04 10:59:07 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,13 @@ t_format	*build_flags(t_format *f, int *fpos, const char *fstr)
 
 /*
 * Inits an empty t_format type with defaults and returns it.
+* char* //(char *)ft_calloc(sizeof(char), 1);
 */
 t_format	*init_format(t_format *format)
 {
-	format->str = NULL;//(char *)ft_calloc(sizeof(char), 1);
+	format->str = NULL;
 	format->conv = 0;
-	format->var_s = NULL;//(char *)ft_calloc(sizeof(char), 1);
+	format->var_s = NULL;
 	format->var_i = 0;
 	format->var_c = 0;
 	format->var_ulli = 0;
@@ -103,7 +104,7 @@ void	free_format(t_format *format)
 	if (format->str != NULL)
 		free(format->str);
 	if (format->var_s != NULL)
-		free(format->var_s );
+		free(format->var_s);
 	if (format != NULL)
 		free(format);
 	return ;
