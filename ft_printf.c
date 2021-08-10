@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:54:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/04 15:03:41 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/10 17:19:57 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ int	ft_printf(const char *fstr, ...)
 	va_start(args, fstr);
 	str = ft_vprintf(fstr, args);
 	va_end(args);
-	ft_putstr(str);
+	ft_putprintfstr(str);
 	total = ft_strlen(str);
 	free(str);
 	return (total);

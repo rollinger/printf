@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/10 14:37:22 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/10 14:49:51 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ t_format	*build_flags(t_format *f, int *fpos, const char *fstr)
 */
 t_format	*init_format(t_format *format)
 {
-	format->str = NULL;//(char *)ft_calloc(sizeof(char), 1);
+	format->str = NULL;
 	format->conv = 0;
-	format->var_s = NULL;//(char *)ft_calloc(sizeof(char), 1);
+	format->var_s = NULL;
 	format->var_i = 0;
 	format->var_c = 0;
 	format->var_ulli = 0;
