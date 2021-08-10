@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/10 14:12:12 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/10 14:37:22 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ t_format	*build_format_struct(int *fpos, const char *fstr, va_list args)
 	return (format);
 }
 
+/*
+* ft_strfjoin(f->var_s, ft_strdup(va_arg(args, char *)));
+* (char *)va_arg(args, char *);
+*/
 t_format	*build_conv(t_format *f, int *fpos, const char *fstr, va_list args)
 {
 	f->conv = fstr[fpos[2]];
@@ -81,9 +85,9 @@ t_format	*build_flags(t_format *f, int *fpos, const char *fstr)
 */
 t_format	*init_format(t_format *format)
 {
-	format->str = (char *)ft_calloc(sizeof(char), 1);
+	format->str = NULL;//(char *)ft_calloc(sizeof(char), 1);
 	format->conv = 0;
-	format->var_s = (char *)ft_calloc(sizeof(char), 1);
+	format->var_s = NULL;//(char *)ft_calloc(sizeof(char), 1);
 	format->var_i = 0;
 	format->var_c = 0;
 	format->var_ulli = 0;
@@ -101,7 +105,7 @@ t_format	*init_format(t_format *format)
 }
 
 /*
-* Frees the struct and all elements
+* Frees the malloc'ed char*
 */
 void	free_format(t_format *format)
 {
@@ -109,7 +113,5 @@ void	free_format(t_format *format)
 		free(format->str);
 	if (format->var_s)
 		free(format->var_s);
-	/*if (format != NULL)
-		free(format);*/
 	return ;
 }
