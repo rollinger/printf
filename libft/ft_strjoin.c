@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 17:28:09 by prolling          #+#    #+#             */
-/*   Updated: 2021/05/26 12:31:28 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/10 11:57:40 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 /*
 * Allocates (with malloc(3)) and returns a new string, which is the result of
@@ -27,7 +28,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
-	joined = malloc(sizeof(char) * (len_s1 + len_s2 + 1));
+	joined = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
 	if (!joined)
 		return (NULL);
 	ft_strlcpy(joined, (char *)s1, len_s1 + 1);

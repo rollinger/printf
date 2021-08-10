@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/04 10:59:07 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/04 20:04:53 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ t_format	*build_format_struct(int *fpos, const char *fstr, va_list args)
 	t_format	*format;
 
 	format = (t_format *)malloc(sizeof(t_format));
-	format = init_format(format);
-	format = build_conv(format, fpos, fstr, args);
-	format = build_flags(format, fpos, fstr);
+	if (format)
+	{
+		format = init_format(format);
+		format = build_conv(format, fpos, fstr, args);
+		format = build_flags(format, fpos, fstr);
+	}
 	return (format);
 }
 
@@ -78,12 +81,13 @@ t_format	*build_flags(t_format *f, int *fpos, const char *fstr)
 */
 t_format	*init_format(t_format *format)
 {
-	format->str = NULL;
+	format->str = (char *)ft_calloc(sizeof(char), 1);
 	format->conv = 0;
-	format->var_s = NULL;
+	format->var_s = (char *)ft_calloc(sizeof(char), 1);
 	format->var_i = 0;
 	format->var_c = 0;
 	format->var_ulli = 0;
+	format->var_ui = 0;
 	format->is_neg = 0;
 	format->field_width = 0;
 	format->flg_break = 0;
@@ -101,11 +105,12 @@ t_format	*init_format(t_format *format)
 */
 void	free_format(t_format *format)
 {
-	if (format->str != NULL)
+	/**/
+	if (format->str)
 		free(format->str);
-	if (format->var_s != NULL)
+	if (format->var_s)
 		free(format->var_s);
-	if (format != NULL)
-		free(format);
+	/*if (format != NULL)
+		free(format);*/
 	return ;
 }
