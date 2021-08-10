@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/04 20:04:53 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/10 14:12:12 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_format	*build_conv(t_format *f, int *fpos, const char *fstr, va_list args)
 	else if (f->conv == 'c')
 		f->var_c = va_arg(args, int);
 	else if (f->conv == '%')
-		f->var_s = ft_strdup("%");
+		f->var_c = '%';
 	else if (ft_strchr("di", f->conv))
 		f->var_i = va_arg(args, int);
 	else if (f->conv == 'u')
@@ -105,7 +105,6 @@ t_format	*init_format(t_format *format)
 */
 void	free_format(t_format *format)
 {
-	/**/
 	if (format->str)
 		free(format->str);
 	if (format->var_s)
