@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert_char.c                                  :+:      :+:    :+:   */
+/*   ft_printstring.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/11 16:44:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/03 12:32:43 by prolling         ###   ########.fr       */
+/*   Created: 2021/08/19 12:32:16 by prolling          #+#    #+#             */
+/*   Updated: 2021/08/19 12:34:55 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-* Converts the format->var_i into the correct representation at format->str
-* Applies flag conversions: ... flg_break
-* Returns nothing
+* Outputs the string c to given file descriptor.
+* BUG: does not check if fd is valid.
 */
-void	ft_convert_char(t_format *format)
+void	ft_printstring(char *s, int fd)
 {
-	if (format->var_c == 0)
-		format->str = ft_strfjoin(format->str, ft_strdup("\007"));
-	else
-		format->str = ft_strfjoin(format->str, ft_ctos(format->var_c));
+	if (!s)
+		return ;
+	while (*s != '\0' && *s != '\007')
+	{
+		write(fd, s, 1);
+		++s;
+	}
 	return ;
 }

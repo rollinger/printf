@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:54:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/04 15:03:41 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/19 12:35:35 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ char	*ft_vprintf(const char *fstr, va_list args)
 			temp = interpolate_var(fpos, fstr, args);
 			str = ft_strfjoin(str, temp);
 		}
-		if (fpos[3] < 0)
-			break ;
 		fpos[0]++;
 	}
 	return (str);
@@ -140,7 +138,7 @@ int	ft_printf(const char *fstr, ...)
 	va_start(args, fstr);
 	str = ft_vprintf(fstr, args);
 	va_end(args);
-	ft_putstr(str);
+	ft_printstring(str, 1);
 	total = ft_strlen(str);
 	free(str);
 	return (total);
