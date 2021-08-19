@@ -85,9 +85,9 @@ t_format	*build_flags(t_format *f, int *fpos, const char *fstr)
 */
 t_format	*init_format(t_format *format)
 {
-	format->str = NULL;//(char *)ft_calloc(sizeof(char), 1);
+	format->str = NULL;
 	format->conv = 0;
-	format->var_s = NULL;//(char *)ft_calloc(sizeof(char), 1);
+	format->var_s = NULL;
 	format->var_i = 0;
 	format->var_c = 0;
 	format->var_ulli = 0;
