@@ -6,4 +6,5 @@ main.c
 phitest
 debug.c
 *.txt
+tester/
 tripouille-test

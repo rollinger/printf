@@ -6,7 +6,11 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/08/10 17:19:53 by prolling         ###   ########.fr       */
+=======
+/*   Updated: 2021/08/19 12:34:51 by prolling         ###   ########.fr       */
+>>>>>>> aa7422d6ee951e85eae4e700535ee17edfd36ddc
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +71,6 @@ char		*ft_strend(const char *str);
 size_t		ft_is_neg(long long int i);
 size_t		ft_get_field_width(const char *str);
 char		*ft_strfjoin(char *str1, char *str2);
-void		ft_putprintfstr(char *s);
+void		ft_printstring(char *s, int fd);
 
 #endif
