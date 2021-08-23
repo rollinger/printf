@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/23 09:37:52 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/23 10:09:40 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ typedef struct s_format
 	int						var_i;
 	unsigned int			var_ui;
 	unsigned long long int	var_ulli;
-	size_t					is_neg;
+	short					is_neg;
 	short					flg_break;
-	size_t					flg_space;
-	size_t					flg_plus;
-	size_t					flg_alt_form;
-	size_t					flg_lpad;
-	size_t					flg_rpad;
+	short					flg_space;
+	short					flg_plus;
+	short					flg_alt_form;
+	short					flg_lpad;
+	short					flg_rpad;
 	char					pad_char;
-	size_t					field_width;
+	short					field_width;
 }				t_format;
 
 int			ft_sprintf(char *str, const char *fstr, ...);
