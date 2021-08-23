@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 10:27:51 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/23 10:53:50 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/23 12:00:17 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ size_t	ft_get_precision(const char *str)
 */
 char	ft_get_zero_padding(const char *str)
 {
-	while (*str != '\0' && !ft_strchr("123456789", *str))
+	while (*str != '\0' && !ft_strchr("-123456789", *str))
 	{
 		if (*str == '0')
 			return ('0');
