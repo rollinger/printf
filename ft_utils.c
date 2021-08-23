@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 10:27:51 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/23 12:00:17 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/23 12:49:09 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,15 @@ size_t	ft_get_precision(const char *str)
 	while (*str != '\0')
 	{
 		if (*str == '.')
-			return (ft_atoi(++str));
+		{
+			if (ft_isdigit(*(str + 1)))
+				return (ft_atoi(++str));
+			else
+				return (0);
+		}
 		str++;
 	}
-	return (0);
+	return (-1);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/23 11:46:31 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/23 12:46:33 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ t_format	*build_flags(t_format *f, int *fpos, const char *fstr)
 
 	flagstr = ft_substr(fstr, fpos[1] + 1, fpos[2] - fpos[1] - 1);
 	f->field_width = ft_get_field_width(flagstr);
+	// if (ft_strchr("di", f->conv))
+	// {
+		
+	// }
 	f->precision = ft_get_precision(flagstr);
 	f->pad_char = ft_get_zero_padding(flagstr);
 	if (ft_strchr(flagstr, ' '))
@@ -70,13 +74,6 @@ t_format	*build_flags(t_format *f, int *fpos, const char *fstr)
 		f->flg_alt_form = 1;
 	if (ft_strchr(flagstr, '-'))
 		f->flg_rpad = 1;
-	// if (ft_strchr(flagstr, '0'))
-	// {
-	// 	if (f->flg_rpad == 1)
-	// 		f->pad_char = ' ';
-	// 	else
-	// 		f->pad_char = '0';
-	// }
 	free(flagstr);
 	return (f);
 }
@@ -96,7 +93,7 @@ t_format	*init_format(t_format *format)
 	format->var_ui = 0;
 	format->is_neg = 0;
 	format->field_width = 0;
-	format->precision = 0;
+	format->precision = -1;
 	format->flg_break = 0;
 	format->flg_space = 0;
 	format->flg_alt_form = 0;
