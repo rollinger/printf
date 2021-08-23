@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/23 11:57:10 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/23 15:10:59 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ typedef struct s_format
 	char					conv;
 	char					*var_s;
 	char					var_c;
-	int						var_i;
-	unsigned int			var_ui;
+	long long int			var_lli;
 	unsigned long long int	var_ulli;
 	short					is_neg;
 	short					flg_break;
@@ -71,4 +70,5 @@ size_t		ft_get_precision(const char *str);
 char		ft_get_zero_padding(const char *str);
 char		*ft_strfjoin(char *str1, char *str2);
 void		ft_printstring(char *s, int fd);
+long long int	ft_abs(long long int nbr);
 #endif

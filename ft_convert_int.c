@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_convert_int.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:44:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/13 12:41:38 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/23 15:25:36 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,24 @@
 */
 void	ft_convert_int(t_format *format)
 {
-	format->is_neg = ft_is_neg(format->var_i);
-	if (format->is_neg)
-		format->var_ulli = (unsigned long long int)format->var_i * -1;
-	else
-		format->var_ulli = format->var_i;
-	format->str = ft_strfjoin(format->str, ft_uitoa(format->var_ulli));
-	return ;
-}
+	char *numberstring;
 
-void	ft_convert_uint(t_format *format)
-{
-	format->str = ft_strfjoin(format->str, ft_uitoa(format->var_ui));
+	if (format->precision == 0)
+		format->str = ft_strdup("");
+	else
+	{
+		format->is_neg = ft_is_neg(format->var_lli);
+		if (format->conv == 'u')
+			numberstring = ft_strfjoin(format->str, ft_uitoa((unsigned int)format->var_lli));
+		else
+			numberstring = ft_strfjoin(format->str, ft_uitoa(ft_abs(format->var_lli)));
+		if (format->precision < 0)
+			format->str = numberstring;
+		else if (format->precision > 0)
+		{
+			format->str = ft_substr(numberstring, 0, format->precision);
+			free(numberstring);
+		}
+	}
 	return ;
 }

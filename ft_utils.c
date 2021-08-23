@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 10:27:51 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/23 12:49:09 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/23 14:57:13 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_strend(const char *str)
 }
 
 /*
-* Prints a character and returns 1 as the length
+* checks if i is negative or positive
 */
 size_t	ft_is_neg(long long int i)
 {

@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/23 12:46:33 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/23 15:12:17 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,9 @@ t_format	*build_conv(t_format *f, int *fpos, const char *fstr, va_list args)
 		f->var_c = va_arg(args, int);
 	else if (f->conv == '%')
 		f->var_c = '%';
-	else if (ft_strchr("di", f->conv))
-		f->var_i = va_arg(args, int);
-	else if (f->conv == 'u')
-		f->var_ui = va_arg(args, unsigned int);
-	else if (ft_strchr("xX", f->conv))
-		f->var_ui = va_arg(args, unsigned int);
-	else if (ft_strchr("p", f->conv))
+	else if (ft_strchr("diu", f->conv))
+		f->var_lli = va_arg(args, int);
+	else if (ft_strchr("xXp", f->conv))
 		f->var_ulli = va_arg(args, unsigned long long int);
 	return (f);
 }
@@ -60,10 +56,6 @@ t_format	*build_flags(t_format *f, int *fpos, const char *fstr)
 
 	flagstr = ft_substr(fstr, fpos[1] + 1, fpos[2] - fpos[1] - 1);
 	f->field_width = ft_get_field_width(flagstr);
-	// if (ft_strchr("di", f->conv))
-	// {
-		
-	// }
 	f->precision = ft_get_precision(flagstr);
 	f->pad_char = ft_get_zero_padding(flagstr);
 	if (ft_strchr(flagstr, ' '))
@@ -87,10 +79,9 @@ t_format	*init_format(t_format *format)
 	format->str = NULL;
 	format->conv = 0;
 	format->var_s = NULL;
-	format->var_i = 0;
 	format->var_c = 0;
+	format->var_lli = 0;
 	format->var_ulli = 0;
-	format->var_ui = 0;
 	format->is_neg = 0;
 	format->field_width = 0;
 	format->precision = -1;
