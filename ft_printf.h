@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/23 10:09:40 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/23 11:57:10 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_format
 	short					flg_rpad;
 	char					pad_char;
 	short					field_width;
+	short					precision;
 }				t_format;
 
 int			ft_sprintf(char *str, const char *fstr, ...);
@@ -66,6 +67,8 @@ char		*ft_strset(const char *s1, const char *s2);
 char		*ft_strend(const char *str);
 size_t		ft_is_neg(long long int i);
 size_t		ft_get_field_width(const char *str);
+size_t		ft_get_precision(const char *str);
+char		ft_get_zero_padding(const char *str);
 char		*ft_strfjoin(char *str1, char *str2);
 void		ft_printstring(char *s, int fd);
 #endif

@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:10 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/03 13:39:59 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/23 11:57:01 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,6 @@ void	ft_apply_format_field_width(t_format *format)
 	return ;
 }
 
-/* decimal flags */
-void	ft_apply_format_int_flags(t_format *format)
-{
-	if (ft_strchr("di", format->conv))
-	{
-		if (format->flg_plus == 1 && format->is_neg == 0)
-			format->str = ft_strfjoin(ft_strdup("+"), format->str);
-		if (format->flg_space == 1 && format->is_neg == 0)
-			format->str = ft_strfjoin(ft_strdup(" "), format->str);
-		if (format->is_neg == 1)
-			format->str = ft_strfjoin(ft_strdup("-"), format->str);
-	}
-	return ;
-}
-
 /* flag alternative form  */
 void	ft_apply_format_flg_alt_form(t_format *format)
 {
@@ -86,13 +71,39 @@ void	ft_apply_format_flg_alt_form(t_format *format)
 	return ;
 }
 
+void	ft_apply_format_precision(t_format *format)
+{
+	if (ft_strchr("di", format->conv))
+	{
+		if (format->precision > 0)
+			format->str = ft_lpad(format->str, format->precision, '0');	
+	}
+	return ;
+}
+
+void	ft_apply_format_sign_flags(t_format *format)
+{
+	if (ft_strchr("di", format->conv))
+	{
+		if (format->flg_space == 1 && format->is_neg == 0)
+			format->str = ft_strfjoin(ft_strdup(" "), format->str);
+		if (format->is_neg == 1)
+			format->str = ft_strfjoin(ft_strdup("-"), format->str);
+		if (format->flg_plus == 1 && format->is_neg == 0)
+			format->str = ft_strfjoin(ft_strdup("+"), format->str);
+	}
+	return ;
+}
+
 /*
 * Apply various flags to variable
 */
 void	ft_apply_flags_to_variable(t_format *format)
 {
-	ft_apply_format_field_width(format);
-	ft_apply_format_int_flags(format);
+	ft_apply_format_precision(format);
 	ft_apply_format_flg_alt_form(format);
+	ft_apply_format_field_width(format);
+	ft_apply_format_sign_flags(format);
 	return ;
 }
+
