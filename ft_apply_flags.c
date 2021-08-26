@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/26 13:52:58 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/26 16:17:24 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	ft_apply_format_sign_flags(t_format *f)
 			f->str = ft_strfjoin(ft_strdup("+"), f->str);
 			f->field_width += 1;
 		}
-
 	}
 	return ;
 }
@@ -96,6 +95,5 @@ void	ft_apply_flags_to_variable(t_format *format)
 		ft_apply_format_sign_flags(format);
 		ft_apply_format_field_width(format);
 	}
-
 	return ;
 }
