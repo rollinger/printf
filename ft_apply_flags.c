@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/26 10:12:07 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/26 13:52:58 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,23 @@ void	ft_apply_format_precision(t_format *format)
 	return ;
 }
 
-void	ft_apply_format_sign_flags(t_format *format)
+void	ft_apply_format_sign_flags(t_format *f)
 {
-	if (ft_strchr("di", format->conv))
+	if (ft_strchr("diu", f->conv))
 	{
-		if (format->flg_space == 1 && format->is_neg == 0)
-			format->str = ft_strfjoin(ft_strdup(" "), format->str);
-		if (format->is_neg == 1)
-			format->str = ft_strfjoin(ft_strdup("-"), format->str);
-		if (format->flg_plus == 1 && format->is_neg == 0)
-			format->str = ft_strfjoin(ft_strdup("+"), format->str);
+		if (f->flg_space == 1 && f->is_neg == 0 && f->flg_plus == 0)
+			f->str = ft_strfjoin(ft_strdup(" "), f->str);
+		if (f->is_neg == 1 && f->conv != 'u')
+		{
+			f->str = ft_strfjoin(ft_strdup("-"), f->str);
+			f->field_width += 1;
+		}
+		if (f->flg_plus == 1 && f->is_neg == 0)
+		{
+			f->str = ft_strfjoin(ft_strdup("+"), f->str);
+			f->field_width += 1;
+		}
+
 	}
 	return ;
 }
@@ -79,7 +86,16 @@ void	ft_apply_flags_to_variable(t_format *format)
 {
 	ft_apply_format_precision(format);
 	ft_apply_format_flg_alt_form(format);
-	ft_apply_format_sign_flags(format);
-	ft_apply_format_field_width(format);
+	if (format->pad_char == '0')
+	{
+		ft_apply_format_field_width(format);
+		ft_apply_format_sign_flags(format);
+	}
+	else
+	{
+		ft_apply_format_sign_flags(format);
+		ft_apply_format_field_width(format);
+	}
+
 	return ;
 }
