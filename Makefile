@@ -6,7 +6,7 @@
 #    By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/16 08:48:58 by prolling          #+#    #+#              #
-#    Updated: 2021/08/26 10:14:28 by prolling         ###   ########.fr        #
+#    Updated: 2021/08/26 16:29:28 by prolling         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ $(NAME): clean
 	$(ARCH) $(NAME) *.o
 	ranlib $(NAME)
 	rm -f *.o *.gch
+
+bonus: $(NAME)
 
 debug: tclean
 	$(CC) -g -Wall -Wextra -Werror $(debug) $(headers) $(libft_src) $(printf_src) -o debug

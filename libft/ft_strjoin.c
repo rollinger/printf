@@ -6,12 +6,11 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 17:28:09 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/10 11:57:40 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/26 16:47:21 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 /*
 * Allocates (with malloc(3)) and returns a new string, which is the result of
