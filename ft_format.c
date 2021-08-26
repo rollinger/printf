@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_format.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/23 15:12:17 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/26 16:12:45 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ t_format	*build_conv(t_format *f, int *fpos, const char *fstr, va_list args)
 	else if (f->conv == '%')
 		f->var_c = '%';
 	else if (ft_strchr("diu", f->conv))
-		f->var_lli = va_arg(args, int);
-	else if (ft_strchr("xXp", f->conv))
+		f->var_lli = (long long int)va_arg(args, int);
+	else if (ft_strchr("xX", f->conv))
+		f->var_ulli = va_arg(args, unsigned int);
+	else if (ft_strchr("p", f->conv))
 		f->var_ulli = va_arg(args, unsigned long long int);
 	return (f);
 }
