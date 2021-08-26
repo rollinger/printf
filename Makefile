@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/16 08:48:58 by prolling          #+#    #+#              #
-#    Updated: 2021/08/23 14:46:06 by prolling         ###   ########.fr        #
+#    Updated: 2021/08/26 10:14:28 by prolling         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,11 @@ CC		= gcc
 ARCH	= ar cr
 
 headers = ft_printf.h
-printf_src = ft_printf.c ft_utils.c ft_format.c ft_convert.c ft_safejoin.c \
-	ft_convert_str.c ft_convert_char.c ft_convert_int.c ft_convert_hex.c \
-	ft_convert_ptr.c ft_convert_per.c ft_printstring.c ft_abs.c
+printf_src = ft_printf.c  ft_format.c ft_flags.c ft_apply_flags.c ft_utils.c\
+	ft_safejoin.c ft_convert.c ft_convert_str.c ft_convert_char.c \
+	ft_convert_int.c ft_convert_hex.c ft_convert_ptr.c ft_convert_per.c \
+	ft_printstring.c ft_abs.c \
+
 libft_src = libft/*.c libft/libft.h
 debug = debug.c
 phitest = ../phitest/*.c ../phitest/*.h

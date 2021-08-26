@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 10:27:51 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/23 14:57:13 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/26 10:08:37 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,51 +65,4 @@ size_t	ft_is_neg(long long int i)
 	if (i < 0)
 		return (1);
 	return (0);
-}
-
-/*
-* return the first digit 1-9, atoi the number and return it.
-*/
-size_t	ft_get_field_width(const char *str)
-{
-	while (*str != '\0')
-	{
-		if (*str >= '1' && *str <= '9')
-			return (ft_atoi(str));
-		str++;
-	}
-	return (0);
-}
-
-/*
-* fast forward to '.' and then atoi the number an return
-*/
-size_t	ft_get_precision(const char *str)
-{
-	while (*str != '\0')
-	{
-		if (*str == '.')
-		{
-			if (ft_isdigit(*(str + 1)))
-				return (ft_atoi(++str));
-			else
-				return (0);
-		}
-		str++;
-	}
-	return (-1);
-}
-
-/*
-* find first 0 before any other digit
-*/
-char	ft_get_zero_padding(const char *str)
-{
-	while (*str != '\0' && !ft_strchr("-123456789", *str))
-	{
-		if (*str == '0')
-			return ('0');
-		str++;
-	}
-	return (' ');
 }

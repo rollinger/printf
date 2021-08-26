@@ -6,24 +6,55 @@
 /*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/07/11 11:58:03 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/26 10:53:16 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-* Builds the structure of conversion, flags and variable and returns it. Used
-* for later interpolation
+* return the first digit 1-9, atoi the number and return it.
 */
-t_flags	build_flags_struct(char **fpos, va_list args)
+size_t	ft_get_field_width(const char *str)
 {
-	t_flags	flags;
+	while (*str != '\0')
+	{
+		if (*str >= '1' && *str <= '9')
+			return (ft_atoi(str));
+		str++;
+	}
+	return (0);
+}
 
-	flags->conv = *fpos[2];
-	if (flags->conv == 's')
-		flags->var = va_arg(args, char *);
-	else if (flags->conv == 'c')
-		flags->var = va_arg(args, char);
-	return (flags);
+/*
+* fast forward to '.' and then atoi the number an return
+*/
+size_t	ft_get_precision(const char *str)
+{
+	while (*str != '\0')
+	{
+		if (*str == '.')
+		{
+			if (ft_isdigit(*(str + 1)))
+				return (ft_atoi(++str));
+			else
+				return (0);
+		}
+		str++;
+	}
+	return (-1);
+}
+
+/*
+* find first 0 before any other digit
+*/
+char	ft_get_zero_padding(const char *str)
+{
+	while (*str != '\0' && !ft_strchr("-123456789", *str))
+	{
+		if (*str == '0')
+			return ('0');
+		str++;
+	}
+	return (' ');
 }
