@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:44:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/27 11:55:29 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/27 12:12:58 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ void	ft_convert_int(t_format *format)
 			nbrstr = ft_strfjoin(format->str, \
 				ft_uitoa((unsigned int)format->var_lli));
 			format->is_neg = 0;
+			if (format->precision > 0)
+			{
+				format->pad_char = '0';
+				format->field_width = format->precision;
+				format->precision = -1;
+			}
 		}
 		else
 			nbrstr = ft_strfjoin(format->str, \
