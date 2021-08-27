@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_flags.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/26 10:53:16 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/27 11:24:40 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ size_t	ft_get_field_width(const char *str)
 {
 	while (*str != '\0')
 	{
+		if (*str == '.')
+			break ;
 		if (*str >= '1' && *str <= '9')
 			return (ft_atoi(str));
 		str++;
