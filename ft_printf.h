@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/26 10:07:29 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/27 13:19:02 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

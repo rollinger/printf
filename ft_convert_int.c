@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:44:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/27 12:12:58 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/27 13:22:34 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,36 @@ void	ft_convert_int(t_format *format)
 	else
 	{
 		format->is_neg = ft_is_neg(format->var_lli);
-		if (format->conv == 'u')
+		nbrstr = ft_strfjoin(format->str, \
+			ft_uitoa(ft_abs(format->var_lli)));
+		if (format->precision <= 0 || format->field_width <= 0)
+			format->str = nbrstr;
+		else if (format->precision > 0)
 		{
-			nbrstr = ft_strfjoin(format->str, \
-				ft_uitoa((unsigned int)format->var_lli));
-			format->is_neg = 0;
-			if (format->precision > 0)
-			{
-				format->pad_char = '0';
-				format->field_width = format->precision;
-				format->precision = -1;
-			}
+			format->str = ft_substr(nbrstr, 0, format->precision);
+			free(nbrstr);
 		}
-		else
-			nbrstr = ft_strfjoin(format->str, \
-				ft_uitoa(ft_abs(format->var_lli)));
+	}
+	return ;
+}
+
+void	ft_convert_uint(t_format *format)
+{
+	char	*nbrstr;
+
+	if (format->precision == 0)
+		format->str = ft_strdup("");
+	else
+	{
+		nbrstr = ft_strfjoin(format->str, \
+			ft_uitoa((unsigned int)format->var_lli));
+		format->is_neg = 0;
+		if (format->precision > 0)
+		{
+			format->pad_char = '0';
+			format->field_width = format->precision;
+			format->precision = -1;
+		}
 		if (format->precision <= 0 || format->field_width <= 0)
 			format->str = nbrstr;
 		else if (format->precision > 0)

@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:54:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/26 17:14:17 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/27 13:15:41 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static char	*interpolate_var(int *fpos, const char *fstr, va_list args)
 	if (format.flg_break != 0)
 		fpos[3] = -1;
 	free_format(&format);
-	//free(&format);
 	return (str);
 }
 

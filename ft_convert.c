@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_convert.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:10 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/26 10:12:09 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/27 13:18:48 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_convert_variable(t_format *format)
 	else if (ft_strchr("di", format->conv))
 		ft_convert_int(format);
 	else if (format->conv == 'u')
-		ft_convert_int(format);
+		ft_convert_uint(format);
 	else if (ft_strchr("xX", format->conv))
 		ft_convert_hex(format);
 	else if (format->conv == 'p')
