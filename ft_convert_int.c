@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_convert_int.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:44:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/26 13:59:58 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/27 11:55:29 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_convert_int(t_format *format)
 		else
 			nbrstr = ft_strfjoin(format->str, \
 				ft_uitoa(ft_abs(format->var_lli)));
-		if (format->precision <= 0)
+		if (format->precision <= 0 || format->field_width <= 0)
 			format->str = nbrstr;
 		else if (format->precision > 0)
 		{
