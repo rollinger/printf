@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/27 13:19:02 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/28 11:14:03 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ typedef struct s_format
 	short					flg_alt_form;
 	short					flg_lpad;
 	short					flg_rpad;
+	short					flg_zero_pad;
 	char					pad_char;
 	short					field_width;
 	short					precision;
+	short					exe_flags;
 }				t_format;
 
 int				ft_sprintf(char *str, const char *fstr, ...);

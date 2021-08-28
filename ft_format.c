@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/27 15:01:19 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/28 11:16:21 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ t_format	*build_flags(t_format *f, int *fpos, const char *fstr)
 	f->field_width = ft_get_field_width(flagstr);
 	f->precision = ft_get_precision(flagstr);
 	f->pad_char = ft_get_zero_padding(flagstr);
+	if (f->pad_char == '0')
+		f->flg_zero_pad = 1;
 	if (ft_strchr(flagstr, ' '))
 		f->flg_space = 1;
 	if (ft_strchr(flagstr, '+'))
@@ -100,7 +102,9 @@ t_format	*init_format(t_format *format)
 	format->flg_plus = 0;
 	format->flg_lpad = 1;
 	format->flg_rpad = 0;
+	format->flg_zero_pad = 0;
 	format->pad_char = ' ';
+	format->exe_flags = 1;
 	return (format);
 }
 

@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:54:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/27 13:15:41 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/28 10:00:05 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static char	*interpolate_var(int *fpos, const char *fstr, va_list args)
 	build_conv(&format, fpos, fstr, args);
 	build_flags(&format, fpos, fstr);
 	ft_convert_variable(&format);
-	ft_apply_flags_to_variable(&format);
+	if (format.exe_flags == 1)
+		ft_apply_flags_to_variable(&format);
 	str = ft_strdup(format.str);
 	if (format.flg_break != 0)
 		fpos[3] = -1;

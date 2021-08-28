@@ -6,12 +6,15 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:42:01 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/26 17:31:52 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/27 15:13:29 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+* Returns the absolute value of a lli number
+*/
 long long int	ft_abs(long long int nbr)
 {
 	if (nbr < 0)

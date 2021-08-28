@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:44:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/27 11:22:27 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/28 10:14:40 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ void	ft_convert_str(t_format *format)
 		free(format->str);
 	if (format->precision == -1)
 		format->str = ft_strdup(format->var_s);
-	else if (format->precision == 0 )
+	else if (format->precision == 0)
 		format->str = ft_strdup("");
 	else
-		format->str = ft_substr(format->var_s, 0, format->precision);
+		if (ft_strnstr(format->var_s, "(null)", 6) != 0 && format->precision < 6)
+			format->str = ft_strdup("");
+		else
+			format->str = ft_substr(format->var_s, 0, format->precision);
 	return ;
 }

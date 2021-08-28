@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_apply_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/26 16:17:24 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/28 11:30:41 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,18 @@ void	ft_apply_format_flg_alt_form(t_format *format)
 	return ;
 }
 
+/* apply precision to it */
 void	ft_apply_format_precision(t_format *format)
 {
 	if (ft_strchr("di", format->conv))
 	{
-		if (format->precision > 0)
+		if (format->precision >= 0)
+		{
 			format->str = ft_lpad(format->str, format->precision, '0');
+			if (format->field_width > format->precision && format->precision != -1)
+				format->pad_char = ' ';
+		}
+		
 	}
 	return ;
 }
