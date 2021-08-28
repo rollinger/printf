@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:44:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/28 11:36:50 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/28 11:56:26 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_convert_uint(t_format *format)
 		{
 			format->pad_char = '0';
 			format->field_width = format->precision;
-			format->precision = -1;
+			format->precision = 0;
 		}
 		if (format->precision <= 0 || format->field_width <= 0)
 			format->str = nbrstr;

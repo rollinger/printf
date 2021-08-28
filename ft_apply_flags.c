@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/28 11:30:41 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/28 11:59:42 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void	ft_apply_format_precision(t_format *format)
 		if (format->precision >= 0)
 		{
 			format->str = ft_lpad(format->str, format->precision, '0');
-			if (format->field_width > format->precision && format->precision != -1)
+			if (format->field_width >= format->precision \
+				&& format->precision != -1)
 				format->pad_char = ' ';
 		}
-		
 	}
 	return ;
 }
