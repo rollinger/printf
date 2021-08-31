@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:42:01 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/27 15:13:29 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/31 10:42:57 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@ long long int	ft_abs(long long int nbr)
 		return (nbr *-1);
 	return (nbr);
 }
-
-/*
-* ft_lpad and ft_rpad pad the <str> with <c> for a total of <size>bytes. If the
-* size <= strlen(str) nothing happens. The function returns a ptr to the new
-* allocated str.tion has the new floor plan and two of
-*/
 
 /*
 * Returns a sequence of <n> times char <c>. Returns the <seq>
@@ -46,6 +40,12 @@ char	*ft_seqc(size_t n, int c)
 		*m++ = (unsigned char)c;
 	return (seq);
 }
+
+/*
+* ft_lpad and ft_rpad pad the <str> with <c> for a total of <size>bytes. If the
+* size <= strlen(str) nothing happens. The function returns a ptr to the new
+* allocated str
+*/
 
 /*
 * Expands a <str> to the total <size> and pads it on the left side with <c>

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/16 08:48:58 by prolling          #+#    #+#              #
-#    Updated: 2021/08/26 16:29:28 by prolling         ###   ########.fr        #
+#    Updated: 2021/08/31 10:50:38 by prolling         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
