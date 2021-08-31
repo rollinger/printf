@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/28 11:59:42 by prolling         ###   ########.fr       */
+/*   Updated: 2021/08/31 09:23:05 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ void	ft_apply_format_precision(t_format *format)
 {
 	if (ft_strchr("di", format->conv))
 	{
-		if (format->precision >= 0)
+		if (format->precision > 0)
 		{
 			format->str = ft_lpad(format->str, format->precision, '0');
 			if (format->field_width >= format->precision \
-				&& format->precision != -1)
+				&& format->precision <= (short int)ft_ndigits(format->var_lli))
+			{
 				format->pad_char = ' ';
+			}
 		}
 	}
 	return ;
@@ -91,7 +93,7 @@ void	ft_apply_flags_to_variable(t_format *format)
 {
 	ft_apply_format_precision(format);
 	ft_apply_format_flg_alt_form(format);
-	if (format->pad_char == '0')
+	if (format->flg_zero_pad == 1)
 	{
 		ft_apply_format_field_width(format);
 		ft_apply_format_sign_flags(format);
