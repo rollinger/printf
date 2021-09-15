@@ -1,0 +1,10 @@
+*.a
+*.so
+*.gch
+*.h.gch
+main.c
+phitest
+debug.c
+*.txt
+tester/
+tripouille-test
