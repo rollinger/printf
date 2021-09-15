@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 09:44:26 by prolling          #+#    #+#             */
-/*   Updated: 2021/05/25 09:58:46 by prolling         ###   ########.fr       */
+/*   Updated: 2021/09/02 15:14:26 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 * determines true start and end by strchr s[i] in the sep_buf from both ends of
 * of the string. having alloc mem, it calls strlcpy from start to end +1 and
 * returns the result pointer.
+
+| H ello World ! | => H ello World!
 */
 char	*ft_strtrim(char const *s1, char const *set)
 {

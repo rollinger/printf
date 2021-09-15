@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prolling <prolling@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 17:11:46 by prolling          #+#    #+#             */
-/*   Updated: 2021/05/26 15:25:10 by prolling         ###   ########.fr       */
+/*   Updated: 2021/09/03 10:50:20 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 * found, respectively, to be less than, to match, or be greater than s2.
 * <-1 => s1<s2
 *  0 => s1=s2
-* >+1 => s1>s2
+* > +1 => s1>s2
 */
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

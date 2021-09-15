@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 10:49:39 by prolling          #+#    #+#             */
-/*   Updated: 2021/08/31 10:49:45 by prolling         ###   ########.fr       */
+/*   Updated: 2021/09/02 11:11:11 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	*ft_strfjoin(char *str1, char *str2)
 {
 	char	*rstr;
 
+	rstr = NULL;
 	if (!str1 && str2)
 		rstr = ft_strjoin("", str2);
 	else if (str1 && !str2)

@@ -6,7 +6,7 @@
 #    By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/16 08:48:58 by prolling          #+#    #+#              #
-#    Updated: 2021/08/31 10:50:38 by prolling         ###   ########.fr        #
+#    Updated: 2021/09/15 10:14:52 by prolling         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ libft_src = libft/*.c libft/libft.h
 debug = debug.c
 phitest = ../phitest/*.c ../phitest/*.h
 
-$(NAME): clean
+$(NAME):
 	$(CC) -c $(FLAGS) $(headers) $(libft_src) $(printf_src)
 	$(ARCH) $(NAME) *.o
 	ranlib $(NAME)
