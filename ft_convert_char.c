@@ -17,15 +17,15 @@
 * Applies flag conversions: ... flg_break
 * Returns nothing
 * format->str = ft_strfjoin(format->str, ft_strdup("\007"));
-//format->invisible_n += 1;
+//format->flg_break = 1;
+//format->nullterm = 1;
+//format->invisible_n = 0;
 */
 void	ft_convert_char(t_format *format)
 {
 	if (format->var_c == 0)
 	{
-		format->str = ft_strfjoin(format->str, ft_strdup("\x00"));
-		format->flg_break = 1;
-		format->nullterm = 1;
+		format->str = ft_strfjoin(format->str, ft_strdup("\xff"));
 	}
 	else
 		format->str = ft_strfjoin(format->str, ft_ctos(format->var_c));

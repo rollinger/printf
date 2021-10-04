@@ -20,7 +20,7 @@ void	ft_printstring(char *s, int fd)
 {
 	if (!s)
 		return ;
-	while (*s != '\0' && *s != '\007')
+	while (*s != '\0' && *s != '\xff')
 	{
 		write(fd, s, 1);
 		++s;

@@ -30,7 +30,7 @@ static char	*interpolate_var(int *fpos, const char *fstr, va_list args)
 	str = ft_strdup(format.str);
 	if (format.flg_break != 0)
 		fpos[3] = -1;
-	fpos[4] += format.invisible_n;
+	fpos[4] = format.invisible_n;
 	free_format(&format);
 	return (str);
 }
@@ -94,19 +94,14 @@ char	*ft_vprintf(const char *fstr, va_list args, int *nbytes)
 	{
 		process_pos(fstr, fpos);
 		if (fpos[3] == 1)
-		{
 			temp = ft_substr((char const *)fstr, \
 				fpos[1], fpos[2] - fpos[1] + 1);
-			str = ft_strfjoin(str, temp);
-		}
 		else if (fpos[3] == 2)
-		{
 			temp = interpolate_var(fpos, fstr, args);
-			str = ft_strfjoin(str, temp);
-		}
+		*nbytes += ft_strlen(temp) + fpos[4];
+		str = ft_strfjoin(str, temp);
 		fpos[0]++;
 	}
-	*nbytes = ft_strlen(str) + fpos[4];
 	return (str);
 }
 
@@ -144,7 +139,7 @@ int	ft_printf(const char *fstr, ...)
 	va_start(args, fstr);
 	str = ft_vprintf(fstr, args, &nbytes);
 	va_end(args);
-	ft_putstr_fd(str, 1);
+	ft_printstring(str, 1);
 	free(str);
 	return (nbytes);
 }
