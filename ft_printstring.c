@@ -18,11 +18,17 @@
 */
 void	ft_printstring(char *s, int fd)
 {
+	char	nulc;
+
+	nulc = '\0';
 	if (!s)
 		return ;
-	while (*s != '\0' && *s != '\xff')
+	while (*s != '\0')
 	{
-		write(fd, s, 1);
+		if (*s == '\xff')
+			write(fd, &nulc, 1);
+		else
+			write(fd, s, 1);
 		++s;
 	}
 	return ;
