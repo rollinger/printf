@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 16:44:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/10/03 15:32:07 by prolling         ###   ########.fr       */
+/*   Updated: 2021/10/11 20:23:20 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	ft_convert_char(t_format *format)
 {
 	if (format->var_c == 0)
 	{
-		format->str = ft_strfjoin(format->str, ft_strdup("\xff"));
+		format->str = ft_strfjoin(format->str, ft_strdup("\x6c\x6f\x6c"));
+		format->magic_char = 2;
 	}
 	else
 		format->str = ft_strfjoin(format->str, ft_ctos(format->var_c));

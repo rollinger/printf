@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:54:50 by prolling          #+#    #+#             */
-/*   Updated: 2021/10/03 15:33:26 by prolling         ###   ########.fr       */
+/*   Updated: 2021/10/11 21:02:52 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,8 @@ static char	*interpolate_var(int *fpos, const char *fstr, va_list args)
 	build_conv(&format, fpos, fstr, args);
 	build_flags(&format, fpos, fstr);
 	ft_convert_variable(&format);
-	if (format.exe_flags == 1)
-		ft_apply_flags_to_variable(&format);
+	ft_apply_flags_to_variable(&format);
 	str = ft_strdup(format.str);
-	if (format.flg_break != 0)
-		fpos[3] = -1;
-	fpos[4] = format.invisible_n;
 	free_format(&format);
 	return (str);
 }
@@ -98,7 +94,7 @@ char	*ft_vprintf(const char *fstr, va_list args, int *nbytes)
 				fpos[1], fpos[2] - fpos[1] + 1);
 		else if (fpos[3] == 2)
 			temp = interpolate_var(fpos, fstr, args);
-		*nbytes += ft_strlen(temp) + fpos[4];
+		*nbytes += ft_strlen(temp);
 		str = ft_strfjoin(str, temp);
 		fpos[0]++;
 	}
@@ -139,7 +135,7 @@ int	ft_printf(const char *fstr, ...)
 	va_start(args, fstr);
 	str = ft_vprintf(fstr, args, &nbytes);
 	va_end(args);
-	ft_printstring(str, 1);
+	nbytes = ft_printstring(str, 1);
 	free(str);
 	return (nbytes);
 }

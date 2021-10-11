@@ -6,29 +6,11 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/10/03 15:33:21 by prolling         ###   ########.fr       */
+/*   Updated: 2021/10/11 20:54:16 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-/*
-* Builds the structure of conversion, flags and variable and returns it. Used
-* for later interpolation
-*/
-t_format	*build_format_struct(int *fpos, const char *fstr, va_list args)
-{
-	t_format	*format;
-
-	format = (t_format *)malloc(sizeof(t_format));
-	if (format)
-	{
-		format = init_format(format);
-		format = build_conv(format, fpos, fstr, args);
-		format = build_flags(format, fpos, fstr);
-	}
-	return (format);
-}
 
 /*
 * ft_strfjoin(f->var_s, ft_strdup(va_arg(args, char *)));
@@ -101,7 +83,6 @@ t_format	*init_format(t_format *format)
 	format->is_neg = 0;
 	format->field_width = 0;
 	format->precision = -1;
-	format->flg_break = 0;
 	format->flg_space = 0;
 	format->flg_alt_form = 0;
 	format->flg_plus = 0;
@@ -109,8 +90,7 @@ t_format	*init_format(t_format *format)
 	format->flg_rpad = 0;
 	format->flg_zero_pad = 0;
 	format->pad_char = ' ';
-	format->exe_flags = 1;
-	format->invisible_n = 0;
+	format->magic_char = 0;
 	format->nullterm = 0;
 	return (format);
 }

@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 12:32:16 by prolling          #+#    #+#             */
-/*   Updated: 2021/10/06 11:08:17 by prolling         ###   ########.fr       */
+/*   Updated: 2021/10/11 21:03:10 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,27 @@
 * Outputs the string c to given file descriptor.
 * BUG: does not check if fd is valid.
 */
-void	ft_printstring(char *s, int fd)
+int	ft_printstring(char *s, int fd)
 {
-	char	nulc;
+	int		nbytes;
+	int		nullterm;
 
-	nulc = '\0';
+	nbytes = 0;
+	nullterm = 0;
 	if (!s)
-		return ;
+		return (0);
 	while (*s != '\0')
 	{
-		if (*s == '\xff')
-			write(fd, &nulc, 1);
-		else
+		if (*s == '\x6c' && *(s + 1) == '\x6f' && *(s + 2) == '\x6c')
+		{
+			write(fd, "\0", 1);
+			nullterm = 1;
+			s += 2;
+		}
+		else if (nullterm == 0)
 			write(fd, s, 1);
 		++s;
+		++nbytes;
 	}
-	return ;
+	return (nbytes);
 }

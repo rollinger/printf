@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 11:46:14 by prolling          #+#    #+#             */
-/*   Updated: 2021/10/03 15:32:09 by prolling         ###   ########.fr       */
+/*   Updated: 2021/10/11 20:55:12 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,22 @@
 /* field width flag */
 void	ft_apply_format_field_width(t_format *format)
 {
+	format->field_width += format->magic_char;
 	if (format->field_width > 0)
 	{
 		if (format->flg_rpad == 1)
 		{
-			if (format->nullterm == 1)
-				format->field_width = 0;
-			else if (format->flg_plus == 1 || format->is_neg == 1)
+			if (format->flg_plus == 1 || format->is_neg == 1)
 				format->field_width--;
 			format->str = ft_rpad(format->str, format->field_width, \
 				format->pad_char);
 		}
 		else if (format->flg_lpad == 1)
 		{
-			if (format->flg_plus == 1 || format->is_neg == 1 \
-				|| format->nullterm == 1)
+			if (format->flg_plus == 1 || format->is_neg == 1)
 				format->field_width--;
 			format->str = ft_lpad(format->str, format->field_width, \
-			format->pad_char);
+				format->pad_char);
 		}
 	}
 	return ;

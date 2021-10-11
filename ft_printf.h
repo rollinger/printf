@@ -6,7 +6,7 @@
 /*   By: prolling <prolling@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 10:35:19 by prolling          #+#    #+#             */
-/*   Updated: 2021/10/03 15:33:27 by prolling         ###   ########.fr       */
+/*   Updated: 2021/10/11 20:38:35 by prolling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_format
 	long long int			var_lli;
 	unsigned long long int	var_ulli;
 	short					is_neg;
-	short					flg_break;
 	short					flg_space;
 	short					flg_plus;
 	short					flg_alt_form;
@@ -38,8 +37,7 @@ typedef struct s_format
 	char					pad_char;
 	short					field_width;
 	short					precision;
-	short					exe_flags;
-	short					invisible_n;
+	short					magic_char;
 	short					nullterm;
 }				t_format;
 
@@ -73,6 +71,6 @@ size_t			ft_get_field_width(const char *str);
 size_t			ft_get_precision(const char *str);
 char			ft_get_zero_padding(const char *str);
 char			*ft_strfjoin(char *str1, char *str2);
-void			ft_printstring(char *s, int fd);
+int				ft_printstring(char *s, int fd);
 long long int	ft_abs(long long int nbr);
 #endif
